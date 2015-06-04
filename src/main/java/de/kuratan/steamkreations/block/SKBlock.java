@@ -15,16 +15,16 @@ public abstract class SKBlock extends Block {
     }
 
     public String getUnlocalizedInternalName() {
-        return this.getUnlocalizedName().substring(("tile." + SteamKreations.MODID + ":").length());
+        return this.getUnlocalizedName().substring(("tile." + SteamKreations.MOD_ID + ":").length());
     }
 
     @Override
     public Block setBlockName(String name) {
-        return super.setBlockName(SteamKreations.MODID+":"+name);
+        return super.setBlockName(SteamKreations.MOD_ID +":"+name);
     }
 
     @Override
     public Block setBlockTextureName(String name) {
-        return super.setBlockTextureName(SteamKreations.MODID+":"+name);
+        return super.setBlockTextureName(SteamKreations.MOD_ID +":"+name);
     }
 }

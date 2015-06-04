@@ -39,7 +39,7 @@ minecraft {
     runDir = "eclipse"
 
     replaceIn "SteamKreations.java"
-    replace "@VERSION@", "${config.version}"
+    replace "@MOD_VERSION@", "${config.version}"
     replace "@MOD_ID@", "${config.mod_id}"
 }
 
