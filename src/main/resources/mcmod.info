@@ -1,0 +1,16 @@
+[
+{
+  "modid": "${mod_id}",
+  "name": "Steam Kreations",
+  "description": "",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["mod_dux"],
+  "credits": "The Forge and FML guys",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
