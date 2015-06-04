@@ -15,7 +15,9 @@ buildscript {
     }
 }
 
+apply plugin: 'java'
 apply plugin: 'forge'
+apply plugin: 'maven'
 
 ext.configFile = file "build.properties"
 
@@ -26,7 +28,7 @@ configFile.withReader {
 }
 
 config.version = "${config.version_prefix}${config.version}.${System.getenv("BUILD_NUMBER") ?: 0}${config.version_suffix}"
-version = "${config.version}"
+version = config.version
 group= "de.kuratan.${config.mod_id}"
 archivesBaseName = "SteamKreations"
 
@@ -39,8 +41,8 @@ minecraft {
     runDir = "eclipse"
 
     replaceIn "SteamKreations.java"
-    replace "@MOD_VERSION@", "${config.version}"
-    replace "@MOD_ID@", "${config.mod_id}"
+    replace "@MOD_VERSION@", config.version
+    replace "@MOD_ID@", config.mod_id
 }
 
 processResources
@@ -55,11 +57,11 @@ processResources
     // replace stuff in mcmod.info, nothing else
     from(sourceSets.main.resources.srcDirs) {
         include '*.info'
-                
+
         // replace version and mcversion
         expand 'version':project.version, 'mcversion':project.minecraft.version, 'mod_id':project.config.mod_id
     }
-        
+
     // copy everything else, thats not the *.info
     from(sourceSets.main.resources.srcDirs) {
         exclude '*.info'
