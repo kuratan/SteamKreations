@@ -3,6 +3,7 @@ package de.kuratan.steamkreations;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import de.kuratan.steamkreations.block.SKBlocks;
+import de.kuratan.steamkreations.tileentity.SKTileEntities;
 import net.minecraft.init.Blocks;
 
 
@@ -16,6 +17,7 @@ public class SteamKreations {
     {
         System.out.println("MOD_ID (MOD_VERSION): " + MOD_ID + " (" + MOD_VERSION + ")");
         SKBlocks.init();
+        SKTileEntities.init();
         // some example code
         System.out.println("DIRT BLOCK >> "+ Blocks.dirt.getUnlocalizedName());
         System.out.println("STEAMER BLOCK >> "+ SKBlocks.steamer.getUnlocalizedName());

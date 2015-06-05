@@ -19,6 +19,8 @@ public class BlockSteamer extends SKBlock {
 
     @Override
     public TileEntity createTileEntity(World world, int metadata) {
-        return new TileEntitySteamer();
+        TileEntitySteamer steamer = new TileEntitySteamer();
+        steamer.setType(TileEntitySteamer.TYPES.NORMAL);
+        return steamer;
     }
 }
