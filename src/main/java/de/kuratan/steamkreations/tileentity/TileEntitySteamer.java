@@ -63,7 +63,7 @@ public class TileEntitySteamer extends TileFluidHandler implements ISidedInvento
                 tagList.appendTag(slot);
             }
         }
-        tag.setTag("inv", tagList);
+        tag.setTag(this.getInventoryName(), tagList);
     }
 
     @Override
@@ -71,7 +71,7 @@ public class TileEntitySteamer extends TileFluidHandler implements ISidedInvento
         super.readFromNBT(tag);
         this.setType(TYPES.values()[tag.getInteger("type")]);
         this.itemCookTime = tag.getIntArray("cookTime");
-        NBTTagList tagList = tag.getTagList("inv", 10);
+        NBTTagList tagList = tag.getTagList(this.getInventoryName(), 10);
         for (int i = 0; i < tagList.tagCount(); i++) {
             NBTTagCompound slot = tagList.getCompoundTagAt(i);
             byte index = slot.getByte("slot");
