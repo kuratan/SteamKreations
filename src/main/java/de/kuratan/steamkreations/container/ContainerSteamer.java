@@ -4,6 +4,7 @@ import de.kuratan.steamkreations.tileentity.TileEntitySteamer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
@@ -13,11 +14,11 @@ public class ContainerSteamer extends Container {
 
     public ContainerSteamer(final InventoryPlayer inventoryPlayer, final TileEntitySteamer tileEntitySteamer) {
         this.tileEntitySteamer = tileEntitySteamer;
-        this.addSlotToContainer(new Slot(tileEntitySteamer, 0, 30, 40));
+        this.addSlotToContainer(new SlotSteamer(tileEntitySteamer, 0, 30, 40));
         if (tileEntitySteamer.getType() != TileEntitySteamer.TYPES.NORMAL) {
-            this.addSlotToContainer(new Slot(tileEntitySteamer, 1, 30, 80));
-            this.addSlotToContainer(new Slot(tileEntitySteamer, 2, 70, 40));
-            this.addSlotToContainer(new Slot(tileEntitySteamer, 3, 70, 80));
+            this.addSlotToContainer(new SlotSteamer(tileEntitySteamer, 1, 30, 80));
+            this.addSlotToContainer(new SlotSteamer(tileEntitySteamer, 2, 70, 40));
+            this.addSlotToContainer(new SlotSteamer(tileEntitySteamer, 3, 70, 80));
         }
 
         for (int inventoryRowIndex = 0; inventoryRowIndex < 3; ++inventoryRowIndex)
@@ -68,5 +69,18 @@ public class ContainerSteamer extends Container {
             slot.onPickupFromSlot(entityPlayer, slotStack);
         }
         return itemStack;
+    }
+
+    class SlotSteamer extends Slot {
+
+        public SlotSteamer(IInventory p_i1824_1_, int p_i1824_2_, int p_i1824_3_, int p_i1824_4_) {
+            super(p_i1824_1_, p_i1824_2_, p_i1824_3_, p_i1824_4_);
+        }
+
+        @Override
+        public void onSlotChanged() {
+            super.onSlotChanged();
+            tileEntitySteamer.resetSlot(this.slotNumber);
+        }
     }
 }

@@ -1,6 +1,7 @@
 package de.kuratan.steamkreations.tileentity;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -18,6 +19,7 @@ public class TileEntitySteamer extends TileFluidHandler implements ISidedInvento
 
     protected TYPES type;
     protected ItemStack[] inventory;
+    protected int[] itemCookTime;
 
     public TileEntitySteamer() {
         super();
@@ -29,20 +31,21 @@ public class TileEntitySteamer extends TileFluidHandler implements ISidedInvento
             case REINFORCED:
                 this.tank = new FluidTank(8000);
                 this.inventory = new ItemStack[4];
+                this.itemCookTime = new int[4];
                 break;
             case CREATIVE:
                 this.tank = new FluidTank(-1);
                 this.inventory = new ItemStack[4];
+                this.itemCookTime = new int[4];
                 break;
             default:
                 this.tank = new FluidTank(2000);
                 this.inventory = new ItemStack[1];
+                this.itemCookTime = new int[1];
         }
-        System.out.println("Type set to: " + type);
     }
 
     public TYPES getType() {
-        System.out.println("Retrieving type: " + type);
         return type;
     }
 
@@ -176,5 +179,63 @@ public class TileEntitySteamer extends TileFluidHandler implements ISidedInvento
     @Override
     public boolean isItemValidForSlot(int slot, ItemStack itemStack) {
         return false;
+    }
+
+    @Override
+    public void updateEntity() {
+        if (tank.getFluidAmount() >= 100 * this.getSizeInventory() || this.type == TYPES.CREATIVE) {
+            this.markDirty();
+            tank.drain(100 * this.getSizeInventory(), true);
+
+            for (int i = 0; i < this.getSizeInventory(); i++) {
+                if (canCookSlot(i)) {
+                    this.itemCookTime[i]++;
+
+                    if (this.itemCookTime[i] == 200) {
+                        if (!this.cookSlot(i)) {
+                            System.out.println("Could not cook item!");
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    protected boolean canCookSlot(int slot) {
+        ItemStack itemStack = getStackInSlot(slot);
+        if (itemStack != null) {
+            if (itemStack.getItem() == Items.potato) {
+                return true;
+            }
+            if (itemStack.getItem() == Items.poisonous_potato) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    protected boolean cookSlot(int slot) {
+        ItemStack itemStack = getStackInSlot(slot);
+        ItemStack newStack = null;
+        if (itemStack != null) {
+            if (itemStack.getItem() == Items.potato) {
+                newStack = new ItemStack(Items.baked_potato);
+                newStack.stackSize = itemStack.stackSize;
+            }
+            if (itemStack.getItem() == Items.poisonous_potato) {
+                newStack = new ItemStack(Items.potato);
+                newStack.stackSize = itemStack.stackSize;
+            }
+        }
+        if (newStack != null) {
+            this.setInventorySlotContents(slot, newStack);
+            return true;
+        }
+        return false;
+    }
+
+    public void resetSlot(int slotNumber) {
+        this.itemCookTime[slotNumber] = 0;
+        this.markDirty();
     }
 }

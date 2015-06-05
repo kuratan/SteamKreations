@@ -72,7 +72,6 @@ public class BlockSteamer extends SKBlockContainer implements ITileEntityProvide
 
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer entityPlayer, int direction, float hitX, float hitY, float hitZ) {
-        System.out.println("Activated!");
         if (entityPlayer.isSneaking()) {
             return false;
         }
