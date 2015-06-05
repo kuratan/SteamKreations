@@ -2,11 +2,12 @@ package de.kuratan.steamkreations.block;
 
 import de.kuratan.steamkreations.SteamKreations;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 
-public abstract class SKBlock extends Block implements ISKBlock {
+public abstract class SKBlockContainer extends BlockContainer implements ISKBlock {
 
-    protected SKBlock(Material material) {
+    protected SKBlockContainer(Material material) {
         super(material);
         this.setCreativeTab(SteamKreations.tab);
     }
