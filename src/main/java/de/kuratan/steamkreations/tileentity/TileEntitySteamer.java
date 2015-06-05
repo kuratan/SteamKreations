@@ -27,7 +27,7 @@ public class TileEntitySteamer extends TileFluidHandler implements ISidedInvento
         this.type = type;
         switch (type) {
             case REINFORCED:
-                this.tank = new FluidTank(10000);
+                this.tank = new FluidTank(8000);
                 this.inventory = new ItemStack[4];
                 break;
             case CREATIVE:
@@ -35,7 +35,7 @@ public class TileEntitySteamer extends TileFluidHandler implements ISidedInvento
                 this.inventory = new ItemStack[4];
                 break;
             default:
-                this.tank = new FluidTank(5000);
+                this.tank = new FluidTank(2000);
                 this.inventory = new ItemStack[1];
         }
         System.out.println("Type set to: " + type);
@@ -65,10 +65,7 @@ public class TileEntitySteamer extends TileFluidHandler implements ISidedInvento
 
     @Override
     public boolean canFill(ForgeDirection from, Fluid fluid) {
-        if (from.equals(ForgeDirection.DOWN)) {
-            return super.canFill(from, fluid);
-        }
-        return false;
+        return from.equals(ForgeDirection.DOWN) && super.canFill(from, fluid);
     }
 
     @Override
@@ -112,19 +109,37 @@ public class TileEntitySteamer extends TileFluidHandler implements ISidedInvento
     }
 
     @Override
-    public ItemStack decrStackSize(int i, int i1) {
-        return null;
+    public ItemStack decrStackSize(int slot, int decrement) {
+        ItemStack itemStack = getStackInSlot(slot);
+        if (itemStack != null) {
+            if (itemStack.stackSize <= decrement) {
+                setInventorySlotContents(slot, null);
+            } else {
+                itemStack = itemStack.splitStack(decrement);
+                if (itemStack.stackSize == 0) {
+                    setInventorySlotContents(slot, null);
+                }
+            }
+        }
+        return itemStack;
     }
 
     @Override
     public ItemStack getStackInSlotOnClosing(int slot) {
-        return null;
+        ItemStack itemStack = getStackInSlot(slot);
+        if (itemStack != null) {
+            setInventorySlotContents(slot, null);
+        }
+        return itemStack;
     }
 
     @Override
     public void setInventorySlotContents(int slot, ItemStack itemStack) {
         if (slot < getSizeInventory()) {
             this.inventory[slot] = itemStack;
+            if (itemStack != null && itemStack.stackSize > getInventoryStackLimit()) {
+                itemStack.stackSize = getInventoryStackLimit();
+            }
         }
     }
 
@@ -140,15 +155,12 @@ public class TileEntitySteamer extends TileFluidHandler implements ISidedInvento
 
     @Override
     public int getInventoryStackLimit() {
-        return 0;
+        return 64;
     }
 
     @Override
     public boolean isUseableByPlayer(EntityPlayer entityPlayer) {
-        if (this.worldObj.getTileEntity(this.xCoord, this.yCoord, this.zCoord) == this) {
-            return entityPlayer.getDistanceSq((double)this.xCoord + 0.5D, (double)this.yCoord + 0.5D, (double)this.zCoord + 0.5D) <= 64.0D;
-        }
-        return false;
+        return this.worldObj.getTileEntity(this.xCoord, this.yCoord, this.zCoord) == this && entityPlayer.getDistanceSq((double) this.xCoord + 0.5D, (double) this.yCoord + 0.5D, (double) this.zCoord + 0.5D) <= 64.0D;
     }
 
     @Override
