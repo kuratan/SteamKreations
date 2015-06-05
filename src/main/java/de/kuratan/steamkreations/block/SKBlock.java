@@ -8,6 +8,7 @@ public abstract class SKBlock extends Block {
 
     protected SKBlock(Material material) {
         super(material);
+        this.setCreativeTab(SteamKreations.tab);
     }
 
     public Block setBlockAndTextureName(String name) {
