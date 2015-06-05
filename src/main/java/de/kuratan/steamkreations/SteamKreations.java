@@ -2,10 +2,11 @@ package de.kuratan.steamkreations;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.network.NetworkRegistry;
 import de.kuratan.steamkreations.block.SKBlocks;
+import de.kuratan.steamkreations.gui.GuiHandler;
 import de.kuratan.steamkreations.tileentity.SKTileEntities;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 
@@ -14,6 +15,7 @@ import net.minecraft.item.Item;
 public class SteamKreations {
     public static final String MOD_ID = "steamkreations";
     public static final String MOD_VERSION = "@MOD_VERSION@";
+
     public static CreativeTabs tab = new CreativeTabs(MOD_ID) {
         @Override
         public Item getTabIconItem() {
@@ -21,14 +23,16 @@ public class SteamKreations {
         }
     };
 
+    @Mod.Instance("steamkreations")
+    public static SteamKreations instance;
+
     @Mod.EventHandler
     public void init(FMLInitializationEvent event)
     {
-        System.out.println("MOD_ID (MOD_VERSION): " + MOD_ID + " (" + MOD_VERSION + ")");
+        NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
+
         SKBlocks.init();
         SKTileEntities.init();
-        // some example code
-        System.out.println("DIRT BLOCK >> "+ Blocks.dirt.getUnlocalizedName());
         System.out.println("STEAMER BLOCK >> "+ SKBlocks.steamer.getUnlocalizedName());
     }
 }

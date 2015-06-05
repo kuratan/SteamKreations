@@ -7,7 +7,10 @@ import net.minecraft.inventory.Container;
 
 public class ContainerSteamer extends Container {
 
+    protected TileEntitySteamer tileEntitySteamer;
+
     public ContainerSteamer(final InventoryPlayer inventoryPlayer, final TileEntitySteamer tileEntitySteamer) {
+        this.tileEntitySteamer = tileEntitySteamer;
         this.addSlotToContainer(new SlotSteamerTransform(tileEntitySteamer, 0, 30, 40));
         this.addSlotToContainer(new SlotSteamerTransform(tileEntitySteamer, 1, 30, 80));
         if (tileEntitySteamer.getType() != TileEntitySteamer.TYPES.NORMAL) {
@@ -18,6 +21,6 @@ public class ContainerSteamer extends Container {
 
     @Override
     public boolean canInteractWith(EntityPlayer entityPlayer) {
-        return false;
+        return tileEntitySteamer.isUseableByPlayer(entityPlayer);
     }
 }

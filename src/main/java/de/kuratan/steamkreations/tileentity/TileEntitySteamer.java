@@ -1,7 +1,7 @@
 package de.kuratan.steamkreations.tileentity;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.util.ForgeDirection;
@@ -10,8 +10,7 @@ import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.IFluidHandler;
 import net.minecraftforge.fluids.TileFluidHandler;
 
-public class TileEntitySteamer extends TileFluidHandler implements IInventory, IFluidHandler {
-
+public class TileEntitySteamer extends TileFluidHandler implements ISidedInventory, IFluidHandler {
 
     public enum TYPES {
         NORMAL, REINFORCED, CREATIVE
@@ -19,6 +18,10 @@ public class TileEntitySteamer extends TileFluidHandler implements IInventory, I
 
     protected TYPES type;
     protected ItemStack[] inventory;
+
+    public TileEntitySteamer() {
+        super();
+    }
 
     public void setType(TYPES type) {
         this.type = type;
@@ -68,6 +71,32 @@ public class TileEntitySteamer extends TileFluidHandler implements IInventory, I
         return false;
     }
 
+    @Override
+    public int[] getAccessibleSlotsFromSide(int iside) {
+        ForgeDirection side = ForgeDirection.getOrientation(iside);
+        switch (side) {
+            case DOWN:
+                return new int[0];
+            default:
+                if (this.inventory.length == 2) {
+                    return new int[]{0, 1};
+                }
+                return new int[]{0, 1, 2, 3};
+        }
+    }
+
+    @Override
+    public boolean canInsertItem(int slot, ItemStack itemStack, int iside) {
+        ForgeDirection side = ForgeDirection.getOrientation(iside);
+        return side != ForgeDirection.DOWN && isItemValidForSlot(slot, itemStack);
+    }
+
+    @Override
+    public boolean canExtractItem(int slot, ItemStack itemStack, int iside) {
+        ForgeDirection side = ForgeDirection.getOrientation(iside);
+        return side != ForgeDirection.DOWN;
+    }
+
 
     @Override
     public int getSizeInventory() {
@@ -101,7 +130,7 @@ public class TileEntitySteamer extends TileFluidHandler implements IInventory, I
 
     @Override
     public String getInventoryName() {
-        return null;
+        return "steamer";
     }
 
     @Override
@@ -116,6 +145,9 @@ public class TileEntitySteamer extends TileFluidHandler implements IInventory, I
 
     @Override
     public boolean isUseableByPlayer(EntityPlayer entityPlayer) {
+        if (this.worldObj.getTileEntity(this.xCoord, this.yCoord, this.zCoord) == this) {
+            return entityPlayer.getDistanceSq((double)this.xCoord + 0.5D, (double)this.yCoord + 0.5D, (double)this.zCoord + 0.5D) <= 64.0D;
+        }
         return false;
     }
 
