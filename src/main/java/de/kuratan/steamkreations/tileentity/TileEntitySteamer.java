@@ -5,6 +5,7 @@ import net.minecraft.init.Items;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidTank;
@@ -31,18 +32,16 @@ public class TileEntitySteamer extends TileFluidHandler implements ISidedInvento
             case REINFORCED:
                 this.tank = new FluidTank(8000);
                 this.inventory = new ItemStack[4];
-                this.itemCookTime = new int[4];
                 break;
             case CREATIVE:
                 this.tank = new FluidTank(-1);
                 this.inventory = new ItemStack[4];
-                this.itemCookTime = new int[4];
                 break;
             default:
                 this.tank = new FluidTank(2000);
                 this.inventory = new ItemStack[1];
-                this.itemCookTime = new int[1];
         }
+        this.itemCookTime = new int[this.getSizeInventory()];
     }
 
     public TYPES getType() {
@@ -51,14 +50,36 @@ public class TileEntitySteamer extends TileFluidHandler implements ISidedInvento
 
     @Override
     public void writeToNBT(NBTTagCompound tag) {
-        tag.setInteger("type", this.getType().ordinal());
         super.writeToNBT(tag);
+        tag.setInteger("type", this.getType().ordinal());
+        tag.setIntArray("cookTime", this.itemCookTime);
+        NBTTagList tagList = new NBTTagList();
+        for (int i = 0; i < getSizeInventory(); i++) {
+            if (inventory[i] != null) {
+                System.out.println("saving slot: " + i);
+                NBTTagCompound slot = new NBTTagCompound();
+                slot.setByte("slot", (byte)i);
+                inventory[i].writeToNBT(slot);
+                tagList.appendTag(slot);
+            }
+        }
+        tag.setTag("inv", tagList);
     }
 
     @Override
     public void readFromNBT(NBTTagCompound tag) {
-        this.setType(TYPES.values()[tag.getInteger("type")]);
         super.readFromNBT(tag);
+        this.setType(TYPES.values()[tag.getInteger("type")]);
+        this.itemCookTime = tag.getIntArray("cookTime");
+        NBTTagList tagList = tag.getTagList("inv", 10);
+        for (int i = 0; i < tagList.tagCount(); i++) {
+            NBTTagCompound slot = tagList.getCompoundTagAt(i);
+            byte index = slot.getByte("slot");
+            System.out.println("loading slot: " + index);
+            if (index >= 0 && index < getSizeInventory()) {
+                inventory[index] = ItemStack.loadItemStackFromNBT(slot);
+            }
+        }
     }
 
     @Override
@@ -184,7 +205,6 @@ public class TileEntitySteamer extends TileFluidHandler implements ISidedInvento
     @Override
     public void updateEntity() {
         if (tank.getFluidAmount() >= 100 * this.getSizeInventory() || this.type == TYPES.CREATIVE) {
-            this.markDirty();
             tank.drain(100 * this.getSizeInventory(), true);
 
             for (int i = 0; i < this.getSizeInventory(); i++) {
@@ -198,6 +218,7 @@ public class TileEntitySteamer extends TileFluidHandler implements ISidedInvento
                     }
                 }
             }
+            this.markDirty();
         }
     }
 
