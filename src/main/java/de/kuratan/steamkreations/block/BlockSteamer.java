@@ -20,8 +20,9 @@ import java.util.List;
 
 public class BlockSteamer extends SKBlockContainer implements ITileEntityProvider {
 
-    protected IIcon basicTexture;
-    protected IIcon portTexture;
+    protected IIcon textureTop;
+    protected IIcon textureBottom;
+    protected IIcon textureSide;
 
     protected BlockSteamer() {
         super(Material.iron);
@@ -47,8 +48,9 @@ public class BlockSteamer extends SKBlockContainer implements ITileEntityProvide
 
     @Override
     public void registerBlockIcons(IIconRegister iconRegister) {
-        basicTexture = iconRegister.registerIcon(SteamKreations.MOD_ID + ":steamer");
-        portTexture = iconRegister.registerIcon(SteamKreations.MOD_ID + ":steamer_port");
+        textureTop = iconRegister.registerIcon(SteamKreations.MOD_ID + ":steamer_top");
+        textureBottom = iconRegister.registerIcon(SteamKreations.MOD_ID + ":steamer_bottom");
+        textureSide = iconRegister.registerIcon(SteamKreations.MOD_ID + ":steamer_side");
     }
 
     @Override
@@ -56,9 +58,11 @@ public class BlockSteamer extends SKBlockContainer implements ITileEntityProvide
         ForgeDirection side = ForgeDirection.getOrientation(iside);
         switch (side) {
             case DOWN:
-                return portTexture;
+                return textureBottom;
+            case UP:
+                return textureTop;
             default:
-                return basicTexture;
+                return textureSide;
         }
     }
 
