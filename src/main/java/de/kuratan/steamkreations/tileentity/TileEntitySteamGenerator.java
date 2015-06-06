@@ -1,19 +1,45 @@
 package de.kuratan.steamkreations.tileentity;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
 
 public class TileEntitySteamGenerator extends TileFluidHandler implements IFluidHandler, ISidedInventory {
 
     public enum TYPES {
-        NORMAL, REINFORCED, CREATIVE
+        NORMAL(1, 4000, 20), REINFORCED(4, 8000, 40), CREATIVE(4, -1, 0);
+
+        private int steamCapacity;
+        private int steamPerTick;
+        private int slots;
+
+        TYPES(int slots, int steamCapacity, int steamPerTick) {
+            this.slots = slots;
+            this.steamCapacity = steamCapacity;
+            this.steamPerTick = steamPerTick;
+        }
+
+        public int getSlots() {
+            return slots;
+        }
+
+        public int getSteamCapacity() {
+            return steamCapacity;
+        }
+
+        public int getSteamPerTick() {
+            return steamPerTick;
+        }
     }
 
     protected TYPES type;
     protected ItemStack[] inventory;
+    protected int deviceBurnTime;
 
     public TileEntitySteamGenerator() {
         super();
@@ -26,18 +52,40 @@ public class TileEntitySteamGenerator extends TileFluidHandler implements IFluid
 
     public void setType(TYPES type) {
         this.type = type;
-        switch (type) {
-            case REINFORCED:
-                this.tank = new FluidTank(8000);
-                break;
-            case CREATIVE:
-                this.tank = new FluidTank(-1);
-                break;
-            default:
-                this.tank = new FluidTank(2000);
-        }
+        this.tank = new FluidTank(type.getSteamCapacity());
     }
 
+    @Override
+    public void writeToNBT(NBTTagCompound tag) {
+        super.writeToNBT(tag);
+        tag.setInteger("type", this.getType().ordinal());
+        tag.setInteger("deviceBurnTime", this.deviceBurnTime);
+        NBTTagList tagList = new NBTTagList();
+        for (int i = 0; i < getSizeInventory(); i++) {
+            if (inventory[i] != null) {
+                NBTTagCompound slot = new NBTTagCompound();
+                slot.setByte("slot", (byte)i);
+                inventory[i].writeToNBT(slot);
+                tagList.appendTag(slot);
+            }
+        }
+        tag.setTag(this.getInventoryName(), tagList);
+    }
+
+    @Override
+    public void readFromNBT(NBTTagCompound tag) {
+        super.readFromNBT(tag);
+        this.setType(TYPES.values()[tag.getInteger("type")]);
+        this.deviceBurnTime = tag.getInteger("deviceBurnTime");
+        NBTTagList tagList = tag.getTagList(this.getInventoryName(), 10);
+        for (int i = 0; i < tagList.tagCount(); i++) {
+            NBTTagCompound slot = tagList.getCompoundTagAt(i);
+            byte index = slot.getByte("slot");
+            if (index >= 0 && index < getSizeInventory()) {
+                inventory[index] = ItemStack.loadItemStackFromNBT(slot);
+            }
+        }
+    }
 
     @Override
     public boolean canDrain(ForgeDirection from, Fluid fluid) {
@@ -157,5 +205,24 @@ public class TileEntitySteamGenerator extends TileFluidHandler implements IFluid
             return false;
         }
         return true;
+    }
+
+    @Override
+    public void updateEntity() {
+        if (this.deviceBurnTime == 0) {
+            ItemStack itemStack = getStackInSlot(0);
+            if (itemStack != null && itemStack.stackSize > 0 && itemStack.getItem().equals(Items.coal)) {
+                decrStackSize(0, 1);
+                this.deviceBurnTime = 200;
+            }
+            if (type.equals(TYPES.CREATIVE)) {
+                this.deviceBurnTime = 200;
+            }
+        }
+        if (this.deviceBurnTime > 0) {
+            this.deviceBurnTime--;
+            //this.tank.fill(FluidRegistry.getFluidStack("steam", this.type.getSteamPerTick()), true);
+            this.markDirty();
+        }
     }
 }

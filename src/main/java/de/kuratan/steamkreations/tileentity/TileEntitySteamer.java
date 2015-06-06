@@ -15,7 +15,29 @@ import net.minecraftforge.fluids.TileFluidHandler;
 public class TileEntitySteamer extends TileFluidHandler implements ISidedInventory, IFluidHandler {
 
     public enum TYPES {
-        NORMAL, REINFORCED, CREATIVE
+        NORMAL(1, 4000, 20), REINFORCED(4, 8000, 40), CREATIVE(4, -1, 40);
+
+        private int steamCapacity;
+        private int steamPerTick;
+        private int slots;
+
+        TYPES(int slots, int steamCapacity, int steamPerTick) {
+            this.slots = slots;
+            this.steamCapacity = steamCapacity;
+            this.steamPerTick = steamPerTick;
+        }
+
+        public int getSlots() {
+            return slots;
+        }
+
+        public int getSteamCapacity() {
+            return steamCapacity;
+        }
+
+        public int getSteamPerTick() {
+            return steamPerTick;
+        }
     }
 
     protected TYPES type;
@@ -28,20 +50,9 @@ public class TileEntitySteamer extends TileFluidHandler implements ISidedInvento
 
     public void setType(TYPES type) {
         this.type = type;
-        switch (type) {
-            case REINFORCED:
-                this.tank = new FluidTank(8000);
-                this.inventory = new ItemStack[4];
-                break;
-            case CREATIVE:
-                this.tank = new FluidTank(-1);
-                this.inventory = new ItemStack[4];
-                break;
-            default:
-                this.tank = new FluidTank(2000);
-                this.inventory = new ItemStack[1];
-        }
-        this.itemCookTime = new int[this.getSizeInventory()];
+        this.tank = new FluidTank(type.getSteamCapacity());
+        this.inventory = new ItemStack[type.getSlots()];
+        this.itemCookTime = new int[type.getSlots()];
     }
 
     public TYPES getType() {
@@ -56,7 +67,6 @@ public class TileEntitySteamer extends TileFluidHandler implements ISidedInvento
         NBTTagList tagList = new NBTTagList();
         for (int i = 0; i < getSizeInventory(); i++) {
             if (inventory[i] != null) {
-                System.out.println("saving slot: " + i);
                 NBTTagCompound slot = new NBTTagCompound();
                 slot.setByte("slot", (byte)i);
                 inventory[i].writeToNBT(slot);
@@ -75,7 +85,6 @@ public class TileEntitySteamer extends TileFluidHandler implements ISidedInvento
         for (int i = 0; i < tagList.tagCount(); i++) {
             NBTTagCompound slot = tagList.getCompoundTagAt(i);
             byte index = slot.getByte("slot");
-            System.out.println("loading slot: " + index);
             if (index >= 0 && index < getSizeInventory()) {
                 inventory[index] = ItemStack.loadItemStackFromNBT(slot);
             }
@@ -204,8 +213,8 @@ public class TileEntitySteamer extends TileFluidHandler implements ISidedInvento
 
     @Override
     public void updateEntity() {
-        if (tank.getFluidAmount() >= 100 * this.getSizeInventory() || this.type == TYPES.CREATIVE) {
-            tank.drain(100 * this.getSizeInventory(), true);
+        if (tank.getFluidAmount() >= type.getSteamPerTick() || this.type == TYPES.CREATIVE) {
+            tank.drain(type.getSteamPerTick(), true);
 
             for (int i = 0; i < this.getSizeInventory(); i++) {
                 if (canCookSlot(i)) {
