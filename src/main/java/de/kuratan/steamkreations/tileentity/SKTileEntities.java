@@ -19,5 +19,6 @@ public class SKTileEntities {
 
     public static void init() {
         registerBlock(TileEntitySteamer.class, SKBlocks.steamer);
+        registerBlock(TileEntitySteamGenerator.class, SKBlocks.steamGenerator);
     }
 }

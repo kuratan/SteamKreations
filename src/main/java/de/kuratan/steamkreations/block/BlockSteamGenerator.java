@@ -2,7 +2,7 @@ package de.kuratan.steamkreations.block;
 
 import de.kuratan.steamkreations.SteamKreations;
 import de.kuratan.steamkreations.gui.SKGuis;
-import de.kuratan.steamkreations.tileentity.TileEntitySteamer;
+import de.kuratan.steamkreations.tileentity.TileEntitySteamGenerator;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -18,31 +18,31 @@ import net.minecraftforge.common.util.ForgeDirection;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BlockSteamer extends SKBlockContainer implements ITileEntityProvider {
+public class BlockSteamGenerator extends SKBlockContainer implements ITileEntityProvider {
 
     protected IIcon textureTop;
     protected IIcon textureBottom;
     protected IIcon textureSide;
 
-    protected BlockSteamer() {
+    protected BlockSteamGenerator() {
         super(Material.iron);
-        this.setBlockAndTextureName("steamer");
+        this.setBlockAndTextureName("steam_generator");
         this.setHardness(1.0f);
         this.setStepSound(soundTypeMetal);
     }
 
     @Override
     public void getSubBlocks(Item blockItem, CreativeTabs p_149666_2_, List subBlocks) {
-        for (int i = 0; i < TileEntitySteamer.TYPES.values().length; i++) {
+        for (int i = 0; i < TileEntitySteamGenerator.TYPES.values().length; i++) {
             subBlocks.add(new ItemStack(blockItem, 1, i));
         }
     }
 
     @Override
     public TileEntity createNewTileEntity(World world, int metadata) {
-        TileEntitySteamer steamer = new TileEntitySteamer();
-        steamer.setType(TileEntitySteamer.TYPES.values()[metadata]);
-        return steamer;
+        TileEntitySteamGenerator steamGenerator = new TileEntitySteamGenerator();
+        steamGenerator.setType(TileEntitySteamGenerator.TYPES.values()[metadata]);
+        return steamGenerator;
     }
 
     @Override
@@ -79,9 +79,9 @@ public class BlockSteamer extends SKBlockContainer implements ITileEntityProvide
             return false;
         }
         if (!world.isRemote) {
-            TileEntitySteamer tileEntitySteamer = (TileEntitySteamer) world.getTileEntity(x, y, z);
-            if (tileEntitySteamer != null) {
-                entityPlayer.openGui(SteamKreations.instance, SKGuis.STEAMER.ordinal(), world, x, y, z);
+            TileEntitySteamGenerator tileEntitySteamGenerator = (TileEntitySteamGenerator) world.getTileEntity(x, y, z);
+            if (tileEntitySteamGenerator != null) {
+                entityPlayer.openGui(SteamKreations.instance, SKGuis.STEAM_GENERATOR.ordinal(), world, x, y, z);
             }
         }
         return true;

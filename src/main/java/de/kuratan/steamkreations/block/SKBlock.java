@@ -1,6 +1,7 @@
 package de.kuratan.steamkreations.block;
 
 import de.kuratan.steamkreations.SteamKreations;
+import de.kuratan.steamkreations.utils.ModReference;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 
@@ -15,17 +16,21 @@ public abstract class SKBlock extends Block implements ISKBlock {
         return this.setBlockName(name).setBlockTextureName(name);
     }
 
+    public String getUnlocalizedInternalNameWithMod() {
+        return ModReference.getUnlocalizedInternalNameWithMod(this);
+    }
+
     public String getUnlocalizedInternalName() {
-        return this.getUnlocalizedName().substring(("tile." + SteamKreations.MOD_ID + ":").length());
+        return ModReference.getUnlocalizedInternalName(this);
     }
 
     @Override
     public Block setBlockName(String name) {
-        return super.setBlockName(SteamKreations.MOD_ID +":"+name);
+        return super.setBlockName(ModReference.modPrefix(name));
     }
 
     @Override
     public Block setBlockTextureName(String name) {
-        return super.setBlockTextureName(SteamKreations.MOD_ID +":"+name);
+        return super.setBlockTextureName(ModReference.modPrefix(name));
     }
 }

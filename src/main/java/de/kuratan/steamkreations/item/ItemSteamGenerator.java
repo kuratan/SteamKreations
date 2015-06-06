@@ -2,8 +2,8 @@ package de.kuratan.steamkreations.item;
 
 import net.minecraft.block.Block;
 
-public class ItemSteamer extends SKItemBlock {
-    public ItemSteamer(Block block) {
+public class ItemSteamGenerator extends SKItemBlock {
+    public ItemSteamGenerator(Block block) {
         super(block);
         this.setMaxDamage(0);
         this.setHasSubtypes(true);
