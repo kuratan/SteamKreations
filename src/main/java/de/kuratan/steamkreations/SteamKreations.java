@@ -6,6 +6,7 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import de.kuratan.steamkreations.block.SKBlocks;
 import de.kuratan.steamkreations.gui.GuiHandler;
+import de.kuratan.steamkreations.item.SKItems;
 import de.kuratan.steamkreations.tileentity.SKTileEntities;
 import de.kuratan.steamkreations.utils.managers.SteamerManager;
 import net.minecraft.creativetab.CreativeTabs;
@@ -34,6 +35,7 @@ public class SteamKreations {
 
         SKBlocks.init();
         SKTileEntities.init();
+        SKItems.init();
     }
 
     @Mod.EventHandler
