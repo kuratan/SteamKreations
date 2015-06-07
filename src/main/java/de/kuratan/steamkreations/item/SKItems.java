@@ -25,10 +25,10 @@ public class SKItems {
         return item;
     }
 
-    public static void init() {
+    public static void initialization() {
         steamedCarrot = registerItem(
-                addItem(new ItemFood(6, 1F, false).setUnlocalizedName(ModReference.modPrefix("steamed_carrot"))
-                                                  .setTextureName(ModReference.modPrefix("steamed_carrot"))
-                                                  .setCreativeTab(SteamKreations.tab)));
+                addItem(new ItemFood(6, 1.0F, false).setUnlocalizedName(ModReference.modPrefix("steamed_carrot"))
+                                                    .setTextureName(ModReference.modPrefix("steamed_carrot"))
+                                                    .setCreativeTab(SteamKreations.tab)));
     }
 }

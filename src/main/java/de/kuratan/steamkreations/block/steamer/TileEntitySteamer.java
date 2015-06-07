@@ -1,6 +1,5 @@
 package de.kuratan.steamkreations.block.steamer;
 
-import de.kuratan.steamkreations.tileentity.ISKTileEntity;
 import de.kuratan.steamkreations.utils.managers.SteamerManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
@@ -16,7 +15,7 @@ import net.minecraftforge.fluids.TileFluidHandler;
 /**
  * TileEntity representing a basic steamer.
  */
-public class TileEntitySteamer extends TileFluidHandler implements ISidedInventory, IFluidHandler, ISKTileEntity {
+public class TileEntitySteamer extends TileFluidHandler implements ISidedInventory, IFluidHandler {
 
     public enum TYPES {
         NORMAL(1, 4000, 20), REINFORCED(4, 8000, 40), CREATIVE(4, -1, 40);

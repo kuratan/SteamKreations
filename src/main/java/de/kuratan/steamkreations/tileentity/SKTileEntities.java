@@ -2,6 +2,6 @@ package de.kuratan.steamkreations.tileentity;
 
 public class SKTileEntities {
 
-    public static void init() {
+    public static void initialization() {
     }
 }

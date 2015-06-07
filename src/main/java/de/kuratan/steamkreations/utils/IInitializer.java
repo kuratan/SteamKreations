@@ -1,5 +1,7 @@
 package de.kuratan.steamkreations.utils;
 
 public interface IInitializer {
-    boolean initialize();
+    boolean preInitialization();
+    boolean initialization();
+    boolean postInitialization();
 }

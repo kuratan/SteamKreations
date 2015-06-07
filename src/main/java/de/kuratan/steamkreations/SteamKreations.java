@@ -10,7 +10,6 @@ import de.kuratan.steamkreations.item.SKItems;
 import de.kuratan.steamkreations.tileentity.SKTileEntities;
 import de.kuratan.steamkreations.utils.managers.SteamerManager;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 
 
@@ -33,13 +32,13 @@ public class SteamKreations {
     public void init(FMLInitializationEvent event) {
         NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
 
-        SKBlocks.init();
-        SKTileEntities.init();
-        SKItems.init();
+        SKBlocks.initialization();
+        SKTileEntities.initialization();
+        SKItems.initialization();
     }
 
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event) {
-        SteamerManager.init();
+        SteamerManager.initialization();
     }
 }

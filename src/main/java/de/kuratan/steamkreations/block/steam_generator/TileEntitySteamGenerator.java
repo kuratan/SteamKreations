@@ -1,6 +1,5 @@
 package de.kuratan.steamkreations.block.steam_generator;
 
-import de.kuratan.steamkreations.tileentity.ISKTileEntity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.ISidedInventory;
@@ -13,7 +12,7 @@ import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.IFluidHandler;
 import net.minecraftforge.fluids.TileFluidHandler;
 
-public class TileEntitySteamGenerator extends TileFluidHandler implements IFluidHandler, ISidedInventory, ISKTileEntity {
+public class TileEntitySteamGenerator extends TileFluidHandler implements IFluidHandler, ISidedInventory {
 
     public enum TYPES {
         NORMAL(1, 4000, 20), REINFORCED(4, 8000, 40), CREATIVE(4, -1, 0);

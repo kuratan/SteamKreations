@@ -28,11 +28,11 @@ public class SKBlocks {
         return GameRegistry.registerBlock(block, itemBlock, ModReference.getUnlocalizedInternalName(block));
     }
 
-    public static void init() {
+    public static void initialization() {
         steamer = registerBlock(addBlock(new BlockSteamer()), ItemBlockSteamer.class);
         steamGenerator = registerBlock(addBlock(new BlockSteamGenerator()), ItemBlockSteamGenerator.class);
         for (IInitializer block : blocks) {
-            block.initialize();
+            block.initialization();
         }
     }
 }

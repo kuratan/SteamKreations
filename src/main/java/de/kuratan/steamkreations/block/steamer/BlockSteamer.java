@@ -36,8 +36,18 @@ public class BlockSteamer extends BlockContainer implements ITileEntityProvider,
     }
 
     @Override
-    public boolean initialize() {
+    public boolean preInitialization() {
+        return true;
+    }
+
+    @Override
+    public boolean initialization() {
         GameRegistry.registerTileEntity(TileEntitySteamer.class, ModReference.getUnlocalizedInternalNameWithMod(this));
+        return true;
+    }
+
+    @Override
+    public boolean postInitialization() {
         return true;
     }
 

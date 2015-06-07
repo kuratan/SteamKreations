@@ -16,7 +16,7 @@ public class SteamerManager {
     private static final Map<ComparableItemStack, SteamerRecipe> recipes =
             new HashMap<ComparableItemStack, SteamerRecipe>();
 
-    public static void init() {
+    public static void initialization() {
         System.out.println("Init steamer recipes");
         recipes.clear();
         initializeVanilla();
