@@ -24,6 +24,6 @@ public class ComparableItemStack extends ComparableItem {
 
     @Override
     public boolean equals(Object obj) {
-        return obj instanceof ComparableItemStack && this.isEqualItem((ComparableItemStack) obj);
+        return obj instanceof ComparableItemStack && this.isEqual((ComparableItemStack) obj);
     }
 }
