@@ -1,8 +1,11 @@
 package de.kuratan.steamkreations.block.steamer;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import de.kuratan.steamkreations.SteamKreations;
 import de.kuratan.steamkreations.block.SKBlockContainer;
 import de.kuratan.steamkreations.gui.SKGuis;
+import de.kuratan.steamkreations.utils.IInitializer;
+import de.kuratan.steamkreations.utils.ModReference;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -18,7 +21,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BlockSteamer extends SKBlockContainer implements ITileEntityProvider {
+public class BlockSteamer extends SKBlockContainer implements ITileEntityProvider, IInitializer {
 
     protected IIcon textureTop;
     protected IIcon textureBottom;
@@ -29,6 +32,13 @@ public class BlockSteamer extends SKBlockContainer implements ITileEntityProvide
         this.setBlockAndTextureName("steamer");
         this.setHardness(1.0f);
         this.setStepSound(soundTypeMetal);
+    }
+
+    @Override
+    public boolean initialize() {
+        GameRegistry.registerTileEntity(TileEntitySteamer.class,
+                                        ModReference.getUnlocalizedInternalNameWithMod(this));
+        return true;
     }
 
     @Override

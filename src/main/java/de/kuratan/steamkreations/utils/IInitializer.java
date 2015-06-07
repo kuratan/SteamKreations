@@ -1,5 +1,5 @@
 package de.kuratan.steamkreations.utils;
 
-public interface IHasInit {
+public interface IInitializer {
     boolean initialize();
 }
