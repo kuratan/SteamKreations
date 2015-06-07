@@ -33,6 +33,7 @@ public class BlockSteamer extends BlockContainer implements ITileEntityProvider,
         this.setBlockTextureName(ModReference.modPrefix("steamer"));
         this.setHardness(1.0f);
         this.setStepSound(soundTypeMetal);
+        this.setCreativeTab(SteamKreations.tab);
     }
 
     @Override

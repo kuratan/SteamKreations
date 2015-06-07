@@ -33,6 +33,7 @@ public class BlockSteamGenerator extends BlockContainer implements ITileEntityPr
         this.setBlockTextureName(ModReference.modPrefix("steam_generator"));
         this.setHardness(1.0f);
         this.setStepSound(soundTypeMetal);
+        this.setCreativeTab(SteamKreations.tab);
     }
 
     @Override
