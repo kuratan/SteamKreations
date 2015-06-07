@@ -21,4 +21,9 @@ public class ComparableItemStack extends ComparableItem {
     public ItemStack toItemStack() {
         return new ItemStack(this.getItem(), this.getStackSize(), this.getDamage());
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return obj instanceof ComparableItemStack && this.isEqualItem((ComparableItemStack) obj);
+    }
 }

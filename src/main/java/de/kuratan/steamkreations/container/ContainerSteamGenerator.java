@@ -16,16 +16,14 @@ public class ContainerSteamGenerator extends Container {
         this.addSlotToContainer(new Slot(tileEntitySteamGenerator, 0, 12 + 4 * 18, 8 + 1 * 18));
         this.addSlotToContainer(new Slot(tileEntitySteamGenerator, 1, 12 + 4 * 18, 8 + 3 * 18));
 
-        for (int inventoryRowIndex = 0; inventoryRowIndex < 3; ++inventoryRowIndex)
-        {
-            for (int inventoryColumnIndex = 0; inventoryColumnIndex < 9; ++inventoryColumnIndex)
-            {
-                this.addSlotToContainer(new Slot(inventoryPlayer, inventoryColumnIndex + inventoryRowIndex * 9 + 9, 12 + inventoryColumnIndex * 18, 174 - (4 - inventoryRowIndex) * 18));
+        for (int inventoryRowIndex = 0; inventoryRowIndex < 3; ++inventoryRowIndex) {
+            for (int inventoryColumnIndex = 0; inventoryColumnIndex < 9; ++inventoryColumnIndex) {
+                this.addSlotToContainer(new Slot(inventoryPlayer, inventoryColumnIndex + inventoryRowIndex * 9 + 9,
+                                                 12 + inventoryColumnIndex * 18, 174 - (4 - inventoryRowIndex) * 18));
             }
         }
 
-        for (int actionBarSlotIndex = 0; actionBarSlotIndex < 9; ++actionBarSlotIndex)
-        {
+        for (int actionBarSlotIndex = 0; actionBarSlotIndex < 9; ++actionBarSlotIndex) {
             this.addSlotToContainer(new Slot(inventoryPlayer, actionBarSlotIndex, 12 + actionBarSlotIndex * 18, 160));
         }
     }
@@ -45,7 +43,8 @@ public class ContainerSteamGenerator extends Container {
             itemStack = slotStack.copy();
 
             if (slotId < tileEntitySteamGenerator.getSizeInventory()) {
-                if (!this.mergeItemStack(slotStack, tileEntitySteamGenerator.getSizeInventory(), 36+ tileEntitySteamGenerator.getSizeInventory(), true)) {
+                if (!this.mergeItemStack(slotStack, tileEntitySteamGenerator.getSizeInventory(),
+                                         36 + tileEntitySteamGenerator.getSizeInventory(), true)) {
                     return null;
                 }
             } else if (!this.mergeItemStack(slotStack, 0, tileEntitySteamGenerator.getSizeInventory(), false)) {

@@ -10,11 +10,11 @@ import net.minecraft.tileentity.TileEntity;
 public class SKTileEntities {
 
     public static void registerBlock(final Class<? extends TileEntity> tileEntity, SKBlock block) {
-        GameRegistry.registerTileEntity(tileEntity, SteamKreations.MOD_ID+":"+block.getUnlocalizedInternalName());
+        GameRegistry.registerTileEntity(tileEntity, SteamKreations.MOD_ID + ":" + block.getUnlocalizedInternalName());
     }
 
     public static void registerBlock(final Class<? extends TileEntity> tileEntity, SKBlockContainer block) {
-        GameRegistry.registerTileEntity(tileEntity, SteamKreations.MOD_ID+":"+block.getUnlocalizedInternalName());
+        GameRegistry.registerTileEntity(tileEntity, SteamKreations.MOD_ID + ":" + block.getUnlocalizedInternalName());
     }
 
     public static void init() {

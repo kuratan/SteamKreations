@@ -7,7 +7,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraftforge.common.util.ForgeDirection;
-import net.minecraftforge.fluids.*;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidTank;
+import net.minecraftforge.fluids.IFluidHandler;
+import net.minecraftforge.fluids.TileFluidHandler;
 
 public class TileEntitySteamGenerator extends TileFluidHandler implements IFluidHandler, ISidedInventory {
 
@@ -64,7 +67,7 @@ public class TileEntitySteamGenerator extends TileFluidHandler implements IFluid
         for (int i = 0; i < getSizeInventory(); i++) {
             if (inventory[i] != null) {
                 NBTTagCompound slot = new NBTTagCompound();
-                slot.setByte("slot", (byte)i);
+                slot.setByte("slot", (byte) i);
                 inventory[i].writeToNBT(slot);
                 tagList.appendTag(slot);
             }
@@ -186,7 +189,8 @@ public class TileEntitySteamGenerator extends TileFluidHandler implements IFluid
 
     @Override
     public boolean isUseableByPlayer(EntityPlayer entityPlayer) {
-        return this.worldObj.getTileEntity(this.xCoord, this.yCoord, this.zCoord) == this && entityPlayer.getDistanceSq((double) this.xCoord + 0.5D, (double) this.yCoord + 0.5D, (double) this.zCoord + 0.5D) <= 64.0D;
+        return this.worldObj.getTileEntity(this.xCoord, this.yCoord, this.zCoord) == this && entityPlayer.getDistanceSq(
+                (double) this.xCoord + 0.5D, (double) this.yCoord + 0.5D, (double) this.zCoord + 0.5D) <= 64.0D;
     }
 
     @Override

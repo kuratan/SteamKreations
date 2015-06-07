@@ -12,14 +12,14 @@ import java.util.Map;
 
 public class SteamerManager {
 
-    private static final Map<ComparableItemStack, ComparableItemStack> entries = new HashMap<ComparableItemStack, ComparableItemStack>();
-    private static final Map<ComparableItemStack, Integer> durations = new HashMap<ComparableItemStack, Integer>();
+    private static final Map<ComparableItemStack, SteamerRecipe> recipes =
+            new HashMap<ComparableItemStack, SteamerRecipe>();
 
     public static void init() {
         System.out.println("Init steamer recipes");
-        entries.clear();
+        recipes.clear();
         for (Object me : FurnaceRecipes.smelting().getSmeltingList().entrySet()) {
-            Map.Entry<ItemStack, ItemStack> entry = (Map.Entry<ItemStack, ItemStack>)me;
+            Map.Entry<ItemStack, ItemStack> entry = (Map.Entry<ItemStack, ItemStack>) me;
             if (entry.getKey().getItem() instanceof ItemFishFood) {
                 addRecipe(entry.getKey(), entry.getValue(), 200);
             }
@@ -29,32 +29,20 @@ public class SteamerManager {
     }
 
     public static void addRecipe(ItemStack input, ItemStack output, int duration) {
-        System.out.println("Adding: " + input + " -> " + output + " | " + duration);
-        entries.put(new ComparableItemStack(input), new ComparableItemStack(output));
-        durations.put(new ComparableItemStack(input), duration);
+        recipes.put(new ComparableItemStack(input), new SteamerRecipe(input, output, duration));
     }
 
     public static void addRecipe(Item input, Item output, int duration) {
         addRecipe(new ItemStack(input, 1), new ItemStack(output, 1), duration);
     }
 
-    public static ItemStack getResult(ItemStack input) {
-        return entries.get(input).toItemStack();
-    }
-
-    public static int getDuration(ItemStack input) {
-        return durations.get(input);
+    public static SteamerRecipe getRecipe(ItemStack input) {
+        return recipes.get(new ComparableItemStack(input));
     }
 
     public static boolean isValidInputItemStack(ItemStack itemStack) {
-        return entries.containsKey(itemStack);
-    }
-
-    public static boolean isValidOutputItemStack(ItemStack itemStack) {
-        return entries.containsValue(itemStack);
-    }
-
-    public static boolean isValidItemStack(ItemStack itemStack) {
-        return isValidInputItemStack(itemStack) || isValidOutputItemStack(itemStack);
+        ComparableItemStack comparableItemStack = new ComparableItemStack(itemStack);
+        return recipes.containsKey(comparableItemStack);
     }
 }
+

@@ -10,11 +10,12 @@ public class SKBlocks {
     public static SKBlockContainer steamGenerator;
 
     public static SKBlock registerBlock(final SKBlock block, final Class<? extends ItemBlock> itemblock) {
-        return (SKBlock)GameRegistry.registerBlock(block, (Class)itemblock, block.getUnlocalizedInternalName());
+        return (SKBlock) GameRegistry.registerBlock(block, (Class) itemblock, block.getUnlocalizedInternalName());
     }
 
     public static SKBlockContainer registerBlock(final SKBlockContainer block, final Class<? extends ItemBlock> itemblock) {
-        return (SKBlockContainer)GameRegistry.registerBlock(block, (Class)itemblock, block.getUnlocalizedInternalName());
+        return (SKBlockContainer) GameRegistry
+                .registerBlock(block, (Class) itemblock, block.getUnlocalizedInternalName());
     }
 
     public static void init() {

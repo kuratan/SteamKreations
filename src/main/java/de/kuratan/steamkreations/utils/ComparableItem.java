@@ -40,4 +40,15 @@ public class ComparableItem {
         }
         return false;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return obj instanceof ComparableItem && this.isEqual((ComparableItem) obj);
+    }
+
+    @Override
+    public int hashCode() {
+        // Damage is 16bit -> shift id by 16 to combine
+        return (0xFFFF | damage) | Item.getIdFromItem(item) << 16;
+    }
 }

@@ -23,16 +23,14 @@ public class ContainerSteamer extends Container {
             this.addSlotToContainer(new SlotSteamer(tileEntitySteamer, 0, 12 + 4 * 18, 8 + 2 * 18));
         }
 
-        for (int inventoryRowIndex = 0; inventoryRowIndex < 3; ++inventoryRowIndex)
-        {
-            for (int inventoryColumnIndex = 0; inventoryColumnIndex < 9; ++inventoryColumnIndex)
-            {
-                this.addSlotToContainer(new Slot(inventoryPlayer, inventoryColumnIndex + inventoryRowIndex * 9 + 9, 12 + inventoryColumnIndex * 18, 174 - (4 - inventoryRowIndex) * 18));
+        for (int inventoryRowIndex = 0; inventoryRowIndex < 3; ++inventoryRowIndex) {
+            for (int inventoryColumnIndex = 0; inventoryColumnIndex < 9; ++inventoryColumnIndex) {
+                this.addSlotToContainer(new Slot(inventoryPlayer, inventoryColumnIndex + inventoryRowIndex * 9 + 9,
+                                                 12 + inventoryColumnIndex * 18, 174 - (4 - inventoryRowIndex) * 18));
             }
         }
 
-        for (int actionBarSlotIndex = 0; actionBarSlotIndex < 9; ++actionBarSlotIndex)
-        {
+        for (int actionBarSlotIndex = 0; actionBarSlotIndex < 9; ++actionBarSlotIndex) {
             this.addSlotToContainer(new Slot(inventoryPlayer, actionBarSlotIndex, 12 + actionBarSlotIndex * 18, 160));
         }
     }
@@ -52,7 +50,8 @@ public class ContainerSteamer extends Container {
             itemStack = slotStack.copy();
 
             if (slotId < tileEntitySteamer.getSizeInventory()) {
-                if (!this.mergeItemStack(slotStack, tileEntitySteamer.getSizeInventory(), 36+tileEntitySteamer.getSizeInventory(), true)) {
+                if (!this.mergeItemStack(slotStack, tileEntitySteamer.getSizeInventory(),
+                                         36 + tileEntitySteamer.getSizeInventory(), true)) {
                     return null;
                 }
             } else if (!this.mergeItemStack(slotStack, 0, tileEntitySteamer.getSizeInventory(), false)) {
@@ -82,7 +81,7 @@ public class ContainerSteamer extends Container {
         @Override
         public void onSlotChanged() {
             super.onSlotChanged();
-            tileEntitySteamer.resetSlot(this.slotNumber);
+            tileEntitySteamer.calculateSlotData(this.slotNumber);
         }
     }
 }

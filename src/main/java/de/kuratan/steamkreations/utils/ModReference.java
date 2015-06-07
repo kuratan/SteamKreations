@@ -21,6 +21,6 @@ public class ModReference {
     }
 
     public static String modPrefix(String base) {
-        return SteamKreations.MOD_ID +":" + base;
+        return SteamKreations.MOD_ID + ":" + base;
     }
 }

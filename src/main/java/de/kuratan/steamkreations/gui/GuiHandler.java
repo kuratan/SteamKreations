@@ -14,10 +14,11 @@ public class GuiHandler implements IGuiHandler {
         SKGuis gui = SKGuis.values()[id];
         switch (gui) {
             case STEAMER:
-                TileEntitySteamer tileEntitySteamer = (TileEntitySteamer)world.getTileEntity(x, y, z);
+                TileEntitySteamer tileEntitySteamer = (TileEntitySteamer) world.getTileEntity(x, y, z);
                 return new ContainerSteamer(entityPlayer.inventory, tileEntitySteamer);
             case STEAM_GENERATOR:
-                TileEntitySteamGenerator tileEntitySteamGenerator = (TileEntitySteamGenerator)world.getTileEntity(x, y, z);
+                TileEntitySteamGenerator tileEntitySteamGenerator =
+                        (TileEntitySteamGenerator) world.getTileEntity(x, y, z);
                 return new ContainerSteamGenerator(entityPlayer.inventory, tileEntitySteamGenerator);
         }
         return null;
@@ -28,10 +29,11 @@ public class GuiHandler implements IGuiHandler {
         SKGuis gui = SKGuis.values()[id];
         switch (gui) {
             case STEAMER:
-                TileEntitySteamer tileEntitySteamer = (TileEntitySteamer)world.getTileEntity(x, y, z);
+                TileEntitySteamer tileEntitySteamer = (TileEntitySteamer) world.getTileEntity(x, y, z);
                 return new GuiSteamer(entityPlayer.inventory, tileEntitySteamer);
             case STEAM_GENERATOR:
-                TileEntitySteamGenerator tileEntitySteamGenerator = (TileEntitySteamGenerator)world.getTileEntity(x, y, z);
+                TileEntitySteamGenerator tileEntitySteamGenerator =
+                        (TileEntitySteamGenerator) world.getTileEntity(x, y, z);
                 return new GuiSteamGenerator(entityPlayer.inventory, tileEntitySteamGenerator);
         }
         return null;
