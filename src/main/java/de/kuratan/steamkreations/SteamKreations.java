@@ -2,10 +2,12 @@ package de.kuratan.steamkreations;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import de.kuratan.steamkreations.block.SKBlocks;
 import de.kuratan.steamkreations.gui.GuiHandler;
 import de.kuratan.steamkreations.tileentity.SKTileEntities;
+import de.kuratan.steamkreations.utils.managers.SteamerManager;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -27,12 +29,15 @@ public class SteamKreations {
     public static SteamKreations instance;
 
     @Mod.EventHandler
-    public void init(FMLInitializationEvent event)
-    {
+    public void init(FMLInitializationEvent event) {
         NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
 
         SKBlocks.init();
         SKTileEntities.init();
-        System.out.println("STEAMER BLOCK >> "+ SKBlocks.steamer.getUnlocalizedName());
+    }
+
+    @Mod.EventHandler
+    public void postInit(FMLPostInitializationEvent event) {
+        SteamerManager.init();
     }
 }

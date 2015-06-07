@@ -1,7 +1,7 @@
 package de.kuratan.steamkreations.tileentity;
 
+import de.kuratan.steamkreations.utils.managers.SteamerManager;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -188,7 +188,7 @@ public class TileEntitySteamer extends TileFluidHandler implements ISidedInvento
 
     @Override
     public int getInventoryStackLimit() {
-        return 64;
+        return 1;
     }
 
     @Override
@@ -208,7 +208,7 @@ public class TileEntitySteamer extends TileFluidHandler implements ISidedInvento
 
     @Override
     public boolean isItemValidForSlot(int slot, ItemStack itemStack) {
-        return false;
+        return SteamerManager.isValidItemStack(itemStack);
     }
 
     @Override
@@ -217,10 +217,15 @@ public class TileEntitySteamer extends TileFluidHandler implements ISidedInvento
             tank.drain(type.getSteamPerTick(), true);
 
             for (int i = 0; i < this.getSizeInventory(); i++) {
-                if (canCookSlot(i)) {
-                    this.itemCookTime[i]++;
+                if (this.itemCookTime[i] > 0) {
+                    if (!canCookSlot(i)) {
+                        resetSlot(i);
+                        continue;
+                    }
+                    this.itemCookTime[i]--;
 
-                    if (this.itemCookTime[i] == 200) {
+                    if (this.itemCookTime[i] == 0) {
+                        System.out.println("Cooking: " + this.inventory[i]);
                         if (!this.cookSlot(i)) {
                             System.out.println("Could not cook item!");
                         }
@@ -233,29 +238,15 @@ public class TileEntitySteamer extends TileFluidHandler implements ISidedInvento
 
     protected boolean canCookSlot(int slot) {
         ItemStack itemStack = getStackInSlot(slot);
-        if (itemStack != null) {
-            if (itemStack.getItem() == Items.potato) {
-                return true;
-            }
-            if (itemStack.getItem() == Items.poisonous_potato) {
-                return true;
-            }
-        }
-        return false;
+        return SteamerManager.isValidInputItemStack(itemStack);
     }
 
     protected boolean cookSlot(int slot) {
         ItemStack itemStack = getStackInSlot(slot);
         ItemStack newStack = null;
-        if (itemStack != null) {
-            if (itemStack.getItem() == Items.potato) {
-                newStack = new ItemStack(Items.baked_potato);
-                newStack.stackSize = itemStack.stackSize;
-            }
-            if (itemStack.getItem() == Items.poisonous_potato) {
-                newStack = new ItemStack(Items.potato);
-                newStack.stackSize = itemStack.stackSize;
-            }
+        if (SteamerManager.isValidInputItemStack(itemStack)) {
+            newStack = SteamerManager.getResult(itemStack);
+            newStack.stackSize = itemStack.stackSize;
         }
         if (newStack != null) {
             this.setInventorySlotContents(slot, newStack);
@@ -264,8 +255,14 @@ public class TileEntitySteamer extends TileFluidHandler implements ISidedInvento
         return false;
     }
 
-    public void resetSlot(int slotNumber) {
-        this.itemCookTime[slotNumber] = 0;
+    public void resetSlot(int slot) {
+        ItemStack itemStack = getStackInSlot(slot);
+        int duration = -1;
+        if (itemStack != null && itemStack.stackSize > 0 && canCookSlot(slot)) {
+            duration = SteamerManager.getDuration(itemStack);
+        }
+        this.itemCookTime[slot] = duration;
+        System.out.println("Updatet slot " + slot + " to: " + duration);
         this.markDirty();
     }
 }
