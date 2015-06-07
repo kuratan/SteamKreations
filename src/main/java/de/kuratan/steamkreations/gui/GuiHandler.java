@@ -3,8 +3,8 @@ package de.kuratan.steamkreations.gui;
 import cpw.mods.fml.common.network.IGuiHandler;
 import de.kuratan.steamkreations.container.ContainerSteamGenerator;
 import de.kuratan.steamkreations.container.ContainerSteamer;
-import de.kuratan.steamkreations.tileentity.TileEntitySteamGenerator;
-import de.kuratan.steamkreations.tileentity.TileEntitySteamer;
+import de.kuratan.steamkreations.block.steam_generator.TileEntitySteamGenerator;
+import de.kuratan.steamkreations.block.steamer.TileEntitySteamer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 

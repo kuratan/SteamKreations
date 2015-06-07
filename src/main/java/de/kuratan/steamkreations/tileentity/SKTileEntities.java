@@ -5,6 +5,8 @@ import de.kuratan.steamkreations.SteamKreations;
 import de.kuratan.steamkreations.block.SKBlock;
 import de.kuratan.steamkreations.block.SKBlockContainer;
 import de.kuratan.steamkreations.block.SKBlocks;
+import de.kuratan.steamkreations.block.steam_generator.TileEntitySteamGenerator;
+import de.kuratan.steamkreations.block.steamer.TileEntitySteamer;
 import net.minecraft.tileentity.TileEntity;
 
 public class SKTileEntities {

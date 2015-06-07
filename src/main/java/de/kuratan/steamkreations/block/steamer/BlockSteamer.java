@@ -1,8 +1,8 @@
-package de.kuratan.steamkreations.block;
+package de.kuratan.steamkreations.block.steamer;
 
 import de.kuratan.steamkreations.SteamKreations;
+import de.kuratan.steamkreations.block.SKBlockContainer;
 import de.kuratan.steamkreations.gui.SKGuis;
-import de.kuratan.steamkreations.tileentity.TileEntitySteamer;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -24,7 +24,7 @@ public class BlockSteamer extends SKBlockContainer implements ITileEntityProvide
     protected IIcon textureBottom;
     protected IIcon textureSide;
 
-    protected BlockSteamer() {
+    public BlockSteamer() {
         super(Material.iron);
         this.setBlockAndTextureName("steamer");
         this.setHardness(1.0f);

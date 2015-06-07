@@ -2,7 +2,7 @@ package de.kuratan.steamkreations.gui;
 
 import de.kuratan.steamkreations.SteamKreations;
 import de.kuratan.steamkreations.container.ContainerSteamer;
-import de.kuratan.steamkreations.tileentity.TileEntitySteamer;
+import de.kuratan.steamkreations.block.steamer.TileEntitySteamer;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;

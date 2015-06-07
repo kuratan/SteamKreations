@@ -1,6 +1,6 @@
 package de.kuratan.steamkreations.container;
 
-import de.kuratan.steamkreations.tileentity.TileEntitySteamer;
+import de.kuratan.steamkreations.block.steamer.TileEntitySteamer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;

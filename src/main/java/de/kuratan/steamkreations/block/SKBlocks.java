@@ -1,8 +1,10 @@
 package de.kuratan.steamkreations.block;
 
 import cpw.mods.fml.common.registry.GameRegistry;
-import de.kuratan.steamkreations.item.ItemSteamGenerator;
-import de.kuratan.steamkreations.item.ItemSteamer;
+import de.kuratan.steamkreations.block.steam_generator.BlockSteamGenerator;
+import de.kuratan.steamkreations.block.steam_generator.ItemBlockSteamGenerator;
+import de.kuratan.steamkreations.block.steamer.BlockSteamer;
+import de.kuratan.steamkreations.block.steamer.ItemBlockSteamer;
 import net.minecraft.item.ItemBlock;
 
 public class SKBlocks {
@@ -19,7 +21,7 @@ public class SKBlocks {
     }
 
     public static void init() {
-        steamer = registerBlock(new BlockSteamer(), ItemSteamer.class);
-        steamGenerator = registerBlock(new BlockSteamGenerator(), ItemSteamGenerator.class);
+        steamer = registerBlock(new BlockSteamer(), ItemBlockSteamer.class);
+        steamGenerator = registerBlock(new BlockSteamGenerator(), ItemBlockSteamGenerator.class);
     }
 }

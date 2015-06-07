@@ -1,8 +1,8 @@
-package de.kuratan.steamkreations.block;
+package de.kuratan.steamkreations.block.steam_generator;
 
 import de.kuratan.steamkreations.SteamKreations;
+import de.kuratan.steamkreations.block.SKBlockContainer;
 import de.kuratan.steamkreations.gui.SKGuis;
-import de.kuratan.steamkreations.tileentity.TileEntitySteamGenerator;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -24,7 +24,7 @@ public class BlockSteamGenerator extends SKBlockContainer implements ITileEntity
     protected IIcon textureBottom;
     protected IIcon textureSide;
 
-    protected BlockSteamGenerator() {
+    public BlockSteamGenerator() {
         super(Material.iron);
         this.setBlockAndTextureName("steam_generator");
         this.setHardness(1.0f);

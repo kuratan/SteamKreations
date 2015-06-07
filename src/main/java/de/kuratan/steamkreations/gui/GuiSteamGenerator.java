@@ -1,7 +1,7 @@
 package de.kuratan.steamkreations.gui;
 
 import de.kuratan.steamkreations.container.ContainerSteamGenerator;
-import de.kuratan.steamkreations.tileentity.TileEntitySteamGenerator;
+import de.kuratan.steamkreations.block.steam_generator.TileEntitySteamGenerator;
 import de.kuratan.steamkreations.utils.ModReference;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
