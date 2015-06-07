@@ -19,6 +19,7 @@ public class SKItems {
     }
 
     public static Item registerItem(Item item) {
+        System.out.println("Registering: " + item + " " + ModReference.getUnlocalizedInternalName(item));
         GameRegistry.registerItem(item, ModReference.getUnlocalizedInternalName(item));
         return item;
     }

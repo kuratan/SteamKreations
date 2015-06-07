@@ -1,5 +1,6 @@
 package de.kuratan.steamkreations.utils.managers;
 
+import de.kuratan.steamkreations.item.SKItems;
 import de.kuratan.steamkreations.utils.ComparableItemStack;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -26,6 +27,7 @@ public class SteamerManager {
         }
         addRecipe(Items.poisonous_potato, Items.potato, 200);
         addRecipe(Items.potato, Items.baked_potato, 200);
+        addRecipe(Items.carrot, SKItems.steamedCarrot, 200);
     }
 
     public static void addRecipe(ItemStack input, ItemStack output, int duration) {

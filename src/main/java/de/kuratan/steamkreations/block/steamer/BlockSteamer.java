@@ -2,10 +2,10 @@ package de.kuratan.steamkreations.block.steamer;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import de.kuratan.steamkreations.SteamKreations;
-import de.kuratan.steamkreations.block.SKBlockContainer;
 import de.kuratan.steamkreations.gui.SKGuis;
 import de.kuratan.steamkreations.utils.IInitializer;
 import de.kuratan.steamkreations.utils.ModReference;
+import net.minecraft.block.BlockContainer;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -21,7 +21,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BlockSteamer extends SKBlockContainer implements ITileEntityProvider, IInitializer {
+public class BlockSteamer extends BlockContainer implements ITileEntityProvider, IInitializer {
 
     protected IIcon textureTop;
     protected IIcon textureBottom;
@@ -29,7 +29,8 @@ public class BlockSteamer extends SKBlockContainer implements ITileEntityProvide
 
     public BlockSteamer() {
         super(Material.iron);
-        this.setBlockAndTextureName("steamer");
+        this.setBlockName(ModReference.modPrefix("steamer"));
+        this.setBlockTextureName(ModReference.modPrefix("steamer"));
         this.setHardness(1.0f);
         this.setStepSound(soundTypeMetal);
     }
@@ -57,9 +58,9 @@ public class BlockSteamer extends SKBlockContainer implements ITileEntityProvide
 
     @Override
     public void registerBlockIcons(IIconRegister iconRegister) {
-        textureTop = iconRegister.registerIcon(getUnlocalizedInternalNameWithMod() + "_top");
-        textureBottom = iconRegister.registerIcon(getUnlocalizedInternalNameWithMod() + "_bottom");
-        textureSide = iconRegister.registerIcon(getUnlocalizedInternalNameWithMod() + "_side");
+        textureTop = iconRegister.registerIcon(textureName + "_top");
+        textureBottom = iconRegister.registerIcon(textureName + "_bottom");
+        textureSide = iconRegister.registerIcon(textureName + "_side");
     }
 
     @Override

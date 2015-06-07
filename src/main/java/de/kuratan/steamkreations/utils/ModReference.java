@@ -19,12 +19,16 @@ public class ModReference {
         return block.getUnlocalizedName().substring(("tile.").length());
     }
 
+    public static String getUnlocalizedInternalNameWithMod(Item item) {
+        return item.getUnlocalizedName().substring(("item.").length());
+    }
+
     public static String getUnlocalizedInternalName(Block block) {
         return getUnlocalizedInternalNameWithMod(block).substring((SteamKreations.MOD_ID + ":").length());
     }
 
     public static String getUnlocalizedInternalName(Item item) {
-        return item.getUnlocalizedName().substring(("item.").length());
+        return getUnlocalizedInternalNameWithMod(item).substring((SteamKreations.MOD_ID + ":").length());
     }
 
     public static String modPrefix(String base) {

@@ -1,9 +1,7 @@
 package de.kuratan.steamkreations.block;
 
-import net.minecraft.block.Block;
-
+/**
+ * Marker interface to recognise own blocks.
+ */
 public interface ISKBlock {
-    String getUnlocalizedInternalName();
-
-    Block setBlockAndTextureName(String name);
 }
