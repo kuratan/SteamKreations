@@ -25,14 +25,13 @@ public class SKBlocks {
     }
 
     public static Block registerBlock(final Block block, final Class<? extends ItemBlock> itemBlock) {
-        return GameRegistry
-                .registerBlock(block, (Class) itemBlock, ModReference.getUnlocalizedInternalName(block));
+        return GameRegistry.registerBlock(block, itemBlock, ModReference.getUnlocalizedInternalName(block));
     }
 
     public static void init() {
         steamer = registerBlock(addBlock(new BlockSteamer()), ItemBlockSteamer.class);
         steamGenerator = registerBlock(addBlock(new BlockSteamGenerator()), ItemBlockSteamGenerator.class);
-        for (IInitializer block: blocks) {
+        for (IInitializer block : blocks) {
             block.initialize();
         }
     }

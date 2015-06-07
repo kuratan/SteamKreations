@@ -1,9 +1,11 @@
 package de.kuratan.steamkreations.item;
 
 import cpw.mods.fml.common.registry.GameRegistry;
+import de.kuratan.steamkreations.SteamKreations;
 import de.kuratan.steamkreations.utils.IInitializer;
 import de.kuratan.steamkreations.utils.ModReference;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemFood;
 
 import java.util.ArrayList;
 
@@ -19,12 +21,14 @@ public class SKItems {
     }
 
     public static Item registerItem(Item item) {
-        System.out.println("Registering: " + item + " " + ModReference.getUnlocalizedInternalName(item));
         GameRegistry.registerItem(item, ModReference.getUnlocalizedInternalName(item));
         return item;
     }
 
     public static void init() {
-        steamedCarrot = registerItem(addItem(new ItemSteamedCarrot()));
+        steamedCarrot = registerItem(
+                addItem(new ItemFood(6, 1F, false).setUnlocalizedName(ModReference.modPrefix("steamed_carrot"))
+                                                  .setTextureName(ModReference.modPrefix("steamed_carrot"))
+                                                  .setCreativeTab(SteamKreations.tab)));
     }
 }

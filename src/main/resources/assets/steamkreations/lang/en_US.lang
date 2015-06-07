@@ -1,0 +1,10 @@
+itemGroup.steamkreations=Steam Kreations
+
+item.steamkreations:steamed_carrot.name=Steamed Carrot
+
+tile.steamkreations:steamer.NORMAL.name=Steamer
+tile.steamkreations:steamer.REINFORCED.name=Reinforced Steamer
+tile.steamkreations:steamer.CREATIVE.name=Creative Steamer
+tile.steamkreations:steam_generator.NORMAL.name=Steam Generator
+tile.steamkreations:steam_generator.REINFORCED.name=Reinforced Steam Generator
+tile.steamkreations:steam_generator.CREATIVE.name=Creative Steam Generator

@@ -19,15 +19,21 @@ public class SteamerManager {
     public static void init() {
         System.out.println("Init steamer recipes");
         recipes.clear();
-        for (Object me : FurnaceRecipes.smelting().getSmeltingList().entrySet()) {
-            Map.Entry<ItemStack, ItemStack> entry = (Map.Entry<ItemStack, ItemStack>) me;
-            if (entry.getKey().getItem() instanceof ItemFishFood) {
-                addRecipe(entry.getKey(), entry.getValue(), 200);
-            }
-        }
-        addRecipe(Items.poisonous_potato, Items.potato, 200);
+        initializeVanilla();
+        initializeMod();
+    }
+
+    public static void initializeVanilla() {
+        addRecipe(new ItemStack(Items.fish, 1, ItemFishFood.FishType.COD.func_150976_a()),
+                  new ItemStack(Items.cooked_fished, 1, ItemFishFood.FishType.COD.func_150976_a()), 200);
+        addRecipe(new ItemStack(Items.fish, 1, ItemFishFood.FishType.SALMON.func_150976_a()),
+                  new ItemStack(Items.cooked_fished, 1, ItemFishFood.FishType.SALMON.func_150976_a()), 200);
+        addRecipe(Items.poisonous_potato, Items.potato, 240);
         addRecipe(Items.potato, Items.baked_potato, 200);
-        addRecipe(Items.carrot, SKItems.steamedCarrot, 200);
+    }
+
+    public static void initializeMod() {
+        addRecipe(Items.carrot, SKItems.steamedCarrot, 160);
     }
 
     public static void addRecipe(ItemStack input, ItemStack output, int duration) {

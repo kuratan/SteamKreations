@@ -37,16 +37,17 @@ public class BlockSteamer extends BlockContainer implements ITileEntityProvider,
 
     @Override
     public boolean initialize() {
-        GameRegistry.registerTileEntity(TileEntitySteamer.class,
-                                        ModReference.getUnlocalizedInternalNameWithMod(this));
+        GameRegistry.registerTileEntity(TileEntitySteamer.class, ModReference.getUnlocalizedInternalNameWithMod(this));
         return true;
     }
 
     @Override
-    public void getSubBlocks(Item blockItem, CreativeTabs p_149666_2_, List subBlocks) {
+    public void getSubBlocks(Item blockItem, CreativeTabs tab, List subBlocks) {
+        System.out.println(subBlocks.size());
         for (int i = 0; i < TileEntitySteamer.TYPES.values().length; i++) {
             subBlocks.add(new ItemStack(blockItem, 1, i));
         }
+        System.out.println(subBlocks.size());
     }
 
     @Override

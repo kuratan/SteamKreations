@@ -22,7 +22,7 @@ public class SteamKreations {
     public static CreativeTabs tab = new CreativeTabs(MOD_ID) {
         @Override
         public Item getTabIconItem() {
-            return Items.baked_potato;
+            return SKItems.steamedCarrot;
         }
     };
 

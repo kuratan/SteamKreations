@@ -1,5 +1,6 @@
 package de.kuratan.steamkreations.block.steam_generator;
 
+import de.kuratan.steamkreations.SteamKreations;
 import de.kuratan.steamkreations.item.ItemBlockWithSubtypes;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
@@ -7,6 +8,7 @@ import net.minecraft.item.ItemStack;
 public class ItemBlockSteamGenerator extends ItemBlockWithSubtypes {
     public ItemBlockSteamGenerator(Block block) {
         super(block);
+        this.setCreativeTab(SteamKreations.tab);
     }
 
     @Override
