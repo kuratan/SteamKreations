@@ -1,8 +1,12 @@
 package de.kuratan.steamkreations.block.steam_generator;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import de.kuratan.steamkreations.SteamKreations;
+import de.kuratan.steamkreations.block.ISKBlock;
 import de.kuratan.steamkreations.block.SKBlockContainer;
 import de.kuratan.steamkreations.gui.SKGuis;
+import de.kuratan.steamkreations.utils.IHasInit;
+import de.kuratan.steamkreations.utils.ModReference;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -18,7 +22,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BlockSteamGenerator extends SKBlockContainer implements ITileEntityProvider {
+public class BlockSteamGenerator extends SKBlockContainer implements ITileEntityProvider, ISKBlock, IHasInit {
 
     protected IIcon textureTop;
     protected IIcon textureBottom;
@@ -29,6 +33,12 @@ public class BlockSteamGenerator extends SKBlockContainer implements ITileEntity
         this.setBlockAndTextureName("steam_generator");
         this.setHardness(1.0f);
         this.setStepSound(soundTypeMetal);
+    }
+
+    @Override
+    public boolean initialize() {
+        GameRegistry.registerTileEntity(TileEntitySteamGenerator.class, ModReference.getUnlocalizedInternalNameWithMod(this));
+        return true;
     }
 
     @Override

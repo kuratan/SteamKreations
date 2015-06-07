@@ -1,6 +1,8 @@
 package de.kuratan.steamkreations.block.steam_generator;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import de.kuratan.steamkreations.tileentity.ISKTileEntity;
+import de.kuratan.steamkreations.utils.IHasInit;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.ISidedInventory;

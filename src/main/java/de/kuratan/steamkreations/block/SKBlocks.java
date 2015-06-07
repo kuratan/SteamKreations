@@ -5,23 +5,35 @@ import de.kuratan.steamkreations.block.steam_generator.BlockSteamGenerator;
 import de.kuratan.steamkreations.block.steam_generator.ItemBlockSteamGenerator;
 import de.kuratan.steamkreations.block.steamer.BlockSteamer;
 import de.kuratan.steamkreations.block.steamer.ItemBlockSteamer;
+import de.kuratan.steamkreations.utils.IHasInit;
+import de.kuratan.steamkreations.utils.ModReference;
+import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 
-public class SKBlocks {
-    public static SKBlockContainer steamer;
-    public static SKBlockContainer steamGenerator;
+import java.util.ArrayList;
 
-    public static SKBlock registerBlock(final SKBlock block, final Class<? extends ItemBlock> itemblock) {
-        return (SKBlock) GameRegistry.registerBlock(block, (Class) itemblock, block.getUnlocalizedInternalName());
+public class SKBlocks {
+    public static ArrayList<IHasInit> blocks = new ArrayList<IHasInit>();
+    public static Block steamer;
+    public static Block steamGenerator;
+
+    public static Block addBlock(Block block) {
+        if (block instanceof IHasInit) {
+            blocks.add((IHasInit) block);
+        }
+        return block;
     }
 
-    public static SKBlockContainer registerBlock(final SKBlockContainer block, final Class<? extends ItemBlock> itemblock) {
-        return (SKBlockContainer) GameRegistry
-                .registerBlock(block, (Class) itemblock, block.getUnlocalizedInternalName());
+    public static Block registerBlock(final Block block, final Class<? extends ItemBlock> itemblock) {
+        return GameRegistry
+                .registerBlock(block, (Class) itemblock, ModReference.getUnlocalizedInternalName(block));
     }
 
     public static void init() {
-        steamer = registerBlock(new BlockSteamer(), ItemBlockSteamer.class);
-        steamGenerator = registerBlock(new BlockSteamGenerator(), ItemBlockSteamGenerator.class);
+        steamer = registerBlock(addBlock(new BlockSteamer()), ItemBlockSteamer.class);
+        steamGenerator = registerBlock(addBlock(new BlockSteamGenerator()), ItemBlockSteamGenerator.class);
+        for (IHasInit block: blocks) {
+            block.initialize();
+        }
     }
 }
