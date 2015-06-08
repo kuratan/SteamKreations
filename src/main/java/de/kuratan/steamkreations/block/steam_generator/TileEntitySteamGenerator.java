@@ -170,6 +170,7 @@ public class TileEntitySteamGenerator extends TileFluidHandler implements IFluid
                 itemStack.stackSize = getInventoryStackLimit();
             }
         }
+        this.markDirty();
     }
 
     @Override
