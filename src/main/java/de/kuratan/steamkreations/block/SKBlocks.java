@@ -8,7 +8,10 @@ import de.kuratan.steamkreations.block.steamer.ItemBlockSteamer;
 import de.kuratan.steamkreations.utils.IInitializer;
 import de.kuratan.steamkreations.utils.ModReference;
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemBlock;
+import net.minecraftforge.oredict.ShapedOreRecipe;
 
 import java.util.ArrayList;
 
@@ -34,5 +37,12 @@ public class SKBlocks {
         for (IInitializer block : blocks) {
             block.initialization();
         }
+    }
+
+    public static void postInitialization() {
+        GameRegistry.addRecipe(new ShapedOreRecipe(steamer,
+                                                   new Object[]{" i ", "ici", " b ", 'i', "ingotIron", 'c', Blocks.chest, 'b', Items.bucket}));
+        GameRegistry.addRecipe(new ShapedOreRecipe(steamGenerator,
+                                                   new Object[]{" b ", "ifi", " i ", 'i', "ingotIron", 'f', Blocks.furnace, 'b', Items.bucket}));
     }
 }
