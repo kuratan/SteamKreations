@@ -1,6 +1,7 @@
 itemGroup.steamkreations=Steam Kreations
 
 item.steamkreations:steamed_carrot.name=Steamed Carrot
+item.steamkreations:small_meal.name=Small Meal
 
 tile.steamkreations:steamer.NORMAL.name=Steamer
 tile.steamkreations:steamer.REINFORCED.name=Reinforced Steamer

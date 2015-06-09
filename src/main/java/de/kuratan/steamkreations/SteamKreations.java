@@ -40,5 +40,6 @@ public class SteamKreations {
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event) {
         SteamerManager.initialization();
+        SKItems.postInitialization();
     }
 }
