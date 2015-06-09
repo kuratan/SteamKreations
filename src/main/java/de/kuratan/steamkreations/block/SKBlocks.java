@@ -40,9 +40,11 @@ public class SKBlocks {
     }
 
     public static void postInitialization() {
-        GameRegistry.addRecipe(new ShapedOreRecipe(steamer,
-                                                   new Object[]{" i ", "ici", " b ", 'i', "ingotIron", 'c', Blocks.chest, 'b', Items.bucket}));
-        GameRegistry.addRecipe(new ShapedOreRecipe(steamGenerator,
-                                                   new Object[]{" b ", "ifi", " i ", 'i', "ingotIron", 'f', Blocks.furnace, 'b', Items.bucket}));
+        GameRegistry.addRecipe(
+                new ShapedOreRecipe(steamer, " i ", "ici", " b ", 'i', "ingotIron", 'c', Blocks.chest, 'b',
+                                    Items.bucket));
+        GameRegistry.addRecipe(
+                new ShapedOreRecipe(steamGenerator, " b ", "ifi", " i ", 'i', "ingotIron", 'f', Blocks.furnace, 'b',
+                                    Items.bucket));
     }
 }

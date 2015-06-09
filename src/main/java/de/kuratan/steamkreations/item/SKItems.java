@@ -38,19 +38,22 @@ public class SKItems {
         smallMeal = registerItem(
                 addItem(new ItemFood(10, 3.5F, false).setUnlocalizedName(ModReference.modPrefix("small_meal"))
                                                      .setTextureName(ModReference.modPrefix("small_meal"))
-                                                     .setCreativeTab(SteamKreations.tab)
-                                                     .setHasSubtypes(true)));
+                                                     .setCreativeTab(SteamKreations.tab).setHasSubtypes(true)));
         OreDictionary.registerOre("foodSteamedVegetable", steamedCarrot);
     }
 
     public static void postInitialization() {
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(smallMeal, 1, 0),
-                                                   new Object[]{"MP", "PV", 'M', Items.cooked_beef, 'P', Items.baked_potato, 'V', "foodSteamedVegetable"}));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(smallMeal, 1, 1),
-                                                   new Object[]{"MP", "PV", 'M', Items.cooked_chicken, 'P', Items.baked_potato, 'V', "foodSteamedVegetable"}));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(smallMeal, 1, 2),
-                                                   new Object[]{"MP", "PV", 'M', Items.cooked_fished, 'P', Items.baked_potato, 'V', "foodSteamedVegetable"}));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(smallMeal, 1, 3),
-                                                   new Object[]{"MP", "PV", 'M', Items.cooked_porkchop, 'P', Items.baked_potato, 'V', "foodSteamedVegetable"}));
+        GameRegistry.addRecipe(
+                new ShapedOreRecipe(new ItemStack(smallMeal, 1, 0), "MP", "PV", 'M', Items.cooked_beef, 'P',
+                                    Items.baked_potato, 'V', "foodSteamedVegetable"));
+        GameRegistry.addRecipe(
+                new ShapedOreRecipe(new ItemStack(smallMeal, 1, 1), "MP", "PV", 'M', Items.cooked_chicken, 'P',
+                                    Items.baked_potato, 'V', "foodSteamedVegetable"));
+        GameRegistry.addRecipe(
+                new ShapedOreRecipe(new ItemStack(smallMeal, 1, 2), "MP", "PV", 'M', Items.cooked_fished, 'P',
+                                    Items.baked_potato, 'V', "foodSteamedVegetable"));
+        GameRegistry.addRecipe(
+                new ShapedOreRecipe(new ItemStack(smallMeal, 1, 3), "MP", "PV", 'M', Items.cooked_porkchop, 'P',
+                                    Items.baked_potato, 'V', "foodSteamedVegetable"));
     }
 }
