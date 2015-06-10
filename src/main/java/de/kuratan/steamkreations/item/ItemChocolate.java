@@ -10,10 +10,10 @@ import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 
 import java.util.List;
-import java.util.Random;
 
 public class ItemChocolate extends ItemFood {
     public ItemChocolate() {
@@ -26,10 +26,12 @@ public class ItemChocolate extends ItemFood {
     @Override
     public void onCreated(ItemStack itemStack, World world, EntityPlayer entityPlayer) {
         itemStack.stackTagCompound = new NBTTagCompound();
-        if ((int)(Math.random() * 10) % 2 == 0) {
-            ChocolateManager.addIgredientToItemStack(itemStack, ChocolateManager.getIngredient(new ItemStack(Items.apple)));
+        if ((int) (Math.random() * 10) % 2 == 0) {
+            ChocolateManager
+                    .addIgredientToItemStack(itemStack, ChocolateManager.getIngredient(new ItemStack(Items.apple)));
         } else {
-            ChocolateManager.addIgredientToItemStack(itemStack, ChocolateManager.getIngredient(new ItemStack(Items.golden_apple, 1, 1)));
+            ChocolateManager.addIgredientToItemStack(itemStack, ChocolateManager
+                    .getIngredient(new ItemStack(Items.golden_apple, 1, 1)));
         }
     }
 
@@ -50,7 +52,8 @@ public class ItemChocolate extends ItemFood {
         }
         list.add(EnumChatFormatting.DARK_GRAY + "Chocolate info:");
         for (ChocolateIngredient ingredient : ChocolateManager.getIngredientsFromItemStack(itemStack)) {
-            list.add(EnumChatFormatting.AQUA + ingredient.getItem().getUnlocalizedName());
+            list.add(EnumChatFormatting.AQUA +
+                     StatCollector.translateToLocal(ingredient.getItem().getUnlocalizedName() + ".name"));
         }
         list.add(EnumChatFormatting.GRAY + "HealAmount: " + func_150905_g(itemStack));
         list.add(EnumChatFormatting.GRAY + "SaturationModifier: " + func_150906_h(itemStack));
