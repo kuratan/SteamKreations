@@ -19,7 +19,6 @@ public class SteamerRecipe {
         if (output.stackSize < 1) {
             this.output.stackSize = 1;
         }
-        System.out.println("Adding: " + input + " -> " + output + " | " + duration);
     }
 
     public int getDuration() {

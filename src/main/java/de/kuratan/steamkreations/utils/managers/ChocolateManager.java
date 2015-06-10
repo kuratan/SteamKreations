@@ -1,6 +1,7 @@
 package de.kuratan.steamkreations.utils.managers;
 
 import cpw.mods.fml.common.registry.GameRegistry;
+import de.kuratan.steamkreations.item.SKItems;
 import de.kuratan.steamkreations.utils.ComparableItemStack;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -21,6 +22,7 @@ public class ChocolateManager {
         ingredients.clear();
         initializeVanilla();
         initializeMod();
+        System.out.println("Knowing " + ingredients.size() + " additions to chocolate");
     }
 
     public static void initializeVanilla() {
@@ -30,7 +32,7 @@ public class ChocolateManager {
     }
 
     public static void initializeMod() {
-
+        GameRegistry.addSmelting(Items.apple, new ItemStack(SKItems.chocolate), 0);
     }
 
     public static void addIngredient(ItemStack itemStack, ChocolateIngredient chocolateIngredient) {
@@ -43,8 +45,10 @@ public class ChocolateManager {
                                                                   .setSaturationModifier(saturationModifier));
     }
 
-    public static void addIgredientToItemStack(ItemStack itemStack) {
+    public static void addIgredientToItemStack(ItemStack itemStack, ChocolateIngredient ingredient) {
         List<ChocolateIngredient> list = getIngredientsFromItemStack(itemStack);
+        list.add(ingredient);
+        setIngredientsToItemStack(itemStack, list);
     }
 
     public static ChocolateIngredient getIngredient(ItemStack itemStack) {
@@ -70,6 +74,9 @@ public class ChocolateManager {
     public static List<ChocolateIngredient> getIngredientsFromItemStack(ItemStack itemStack) {
         ArrayList<ChocolateIngredient> ingredients = new ArrayList<ChocolateIngredient>();
         NBTTagCompound root = itemStack.stackTagCompound;
+        if (root == null) {
+            root = new NBTTagCompound();
+        }
         if (!root.hasKey(NBT_TAGLIST_KEY)) {
             root.setTag(NBT_TAGLIST_KEY, new NBTTagList());
         }
@@ -84,6 +91,9 @@ public class ChocolateManager {
 
     public static void setIngredientsToItemStack(ItemStack itemStack, List<ChocolateIngredient> ingredients) {
         NBTTagCompound root = itemStack.stackTagCompound;
+        if (root == null) {
+            root = new NBTTagCompound();
+        }
         NBTTagList list = root.getTagList(NBT_TAGLIST_KEY, 10);
         for (ChocolateIngredient ingredient : ingredients) {
             NBTTagCompound tag = new NBTTagCompound();
@@ -91,5 +101,6 @@ public class ChocolateManager {
             list.appendTag(tag);
         }
         root.setTag(NBT_TAGLIST_KEY, list);
+        itemStack.stackTagCompound = root;
     }
 }

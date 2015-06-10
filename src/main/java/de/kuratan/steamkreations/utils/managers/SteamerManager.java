@@ -17,10 +17,10 @@ public class SteamerManager {
             new HashMap<ComparableItemStack, SteamerRecipe>();
 
     public static void initialization() {
-        System.out.println("Init steamer recipes");
         recipes.clear();
         initializeVanilla();
         initializeMod();
+        System.out.println("Knowing " + recipes.size() + " recipes for steaming");
     }
 
     public static void initializeVanilla() {
