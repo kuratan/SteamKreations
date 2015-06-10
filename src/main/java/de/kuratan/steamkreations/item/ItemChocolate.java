@@ -1,0 +1,49 @@
+package de.kuratan.steamkreations.item;
+
+import de.kuratan.steamkreations.SteamKreations;
+import de.kuratan.steamkreations.utils.ModReference;
+import de.kuratan.steamkreations.utils.managers.ChocolateIngredient;
+import de.kuratan.steamkreations.utils.managers.ChocolateManager;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemFood;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.world.World;
+
+import java.util.List;
+
+public class ItemChocolate extends ItemFood {
+    public ItemChocolate() {
+        super(0, 0F, false);
+        setUnlocalizedName(ModReference.modPrefix("chocolate"));
+        setTextureName(ModReference.modPrefix("chocolate"));
+        setCreativeTab(SteamKreations.tab);
+    }
+
+    @Override
+    public void onCreated(ItemStack itemStack, World world, EntityPlayer entityPlayer) {
+        itemStack.stackTagCompound = new NBTTagCompound();
+    }
+
+    @Override
+    public int func_150905_g(ItemStack itemStack) {
+        return ChocolateManager.getHealAmountFromItemStack(itemStack);
+    }
+
+    @Override
+    public float func_150906_h(ItemStack itemStack) {
+        return ChocolateManager.getSaturationModifierItemStack(itemStack);
+    }
+
+    @Override
+    public void addInformation(ItemStack itemStack, EntityPlayer entityPlayer, List list, boolean bool) {
+        if (itemStack.stackTagCompound != null) {
+            for (ChocolateIngredient ingredient : ChocolateManager.getIngredientsFromItemStack(itemStack)) {
+                list.add(EnumChatFormatting.AQUA + ingredient.getItem().getUnlocalizedName());
+            }
+            list.add(EnumChatFormatting.GRAY + "HealAmount: " + func_150905_g(itemStack));
+            list.add(EnumChatFormatting.GRAY + "SaturationModifier: " + func_150906_h(itemStack));
+        }
+    }
+}

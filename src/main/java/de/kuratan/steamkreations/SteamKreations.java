@@ -8,6 +8,7 @@ import de.kuratan.steamkreations.block.SKBlocks;
 import de.kuratan.steamkreations.gui.GuiHandler;
 import de.kuratan.steamkreations.item.SKItems;
 import de.kuratan.steamkreations.tileentity.SKTileEntities;
+import de.kuratan.steamkreations.utils.managers.ChocolateManager;
 import de.kuratan.steamkreations.utils.managers.SteamerManager;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -40,6 +41,7 @@ public class SteamKreations {
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event) {
         SteamerManager.initialization();
+        ChocolateManager.initialize();
         SKBlocks.postInitialization();
         SKItems.postInitialization();
     }

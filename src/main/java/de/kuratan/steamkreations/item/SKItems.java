@@ -17,6 +17,7 @@ public class SKItems {
     public static ArrayList<IInitializer> items = new ArrayList<IInitializer>();
     public static Item steamedCarrot;
     public static Item smallMeal;
+    public static Item chocolate;
 
     public static Item addItem(Item item) {
         if (item instanceof IInitializer) {
@@ -39,6 +40,7 @@ public class SKItems {
                 addItem(new ItemFood(10, 3.5F, false).setUnlocalizedName(ModReference.modPrefix("small_meal"))
                                                      .setTextureName(ModReference.modPrefix("small_meal"))
                                                      .setCreativeTab(SteamKreations.tab).setHasSubtypes(true)));
+        chocolate = registerItem(addItem(new ItemChocolate()));
         OreDictionary.registerOre("foodSteamedVegetable", steamedCarrot);
     }
 
