@@ -1,6 +1,8 @@
 package de.kuratan.steamkreations.block.steamer;
 
 import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import de.kuratan.steamkreations.SteamKreations;
 import de.kuratan.steamkreations.gui.SKGuis;
 import de.kuratan.steamkreations.utils.IInitializer;
@@ -68,6 +70,7 @@ public class BlockSteamer extends BlockContainer implements ITileEntityProvider,
         return steamer;
     }
 
+    @SideOnly(Side.CLIENT)
     @Override
     public void registerBlockIcons(IIconRegister iconRegister) {
         textureTop = iconRegister.registerIcon(textureName + "_top");
@@ -75,6 +78,7 @@ public class BlockSteamer extends BlockContainer implements ITileEntityProvider,
         textureSide = iconRegister.registerIcon(textureName + "_side");
     }
 
+    @SideOnly(Side.CLIENT)
     @Override
     public IIcon getIcon(int iside, int metadata) {
         ForgeDirection side = ForgeDirection.getOrientation(iside);
