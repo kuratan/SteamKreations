@@ -5,7 +5,6 @@ import de.kuratan.steamkreations.utils.ModReference;
 import de.kuratan.steamkreations.utils.managers.ChocolateIngredient;
 import de.kuratan.steamkreations.utils.managers.ChocolateManager;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -27,13 +26,8 @@ public class ItemChocolate extends ItemFood {
 
     @Override
     public void onCreated(ItemStack itemStack, World world, EntityPlayer entityPlayer) {
-        itemStack.stackTagCompound = new NBTTagCompound();
-        if ((int) (Math.random() * 10) % 2 == 0) {
-            ChocolateManager
-                    .addIgredientToItemStack(itemStack, ChocolateManager.getIngredient(new ItemStack(Items.apple)));
-        } else {
-            ChocolateManager.addIgredientToItemStack(itemStack, ChocolateManager
-                    .getIngredient(new ItemStack(Items.golden_apple, 1, 1)));
+        if (itemStack.stackTagCompound == null) {
+            itemStack.stackTagCompound = new NBTTagCompound();
         }
     }
 
