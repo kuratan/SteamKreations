@@ -4,6 +4,9 @@ item.steamkreations:chocolate.name=Chocolate
 item.steamkreations:steamed_carrot.name=Steamed Carrot
 item.steamkreations:small_meal.name=Small Meal
 
+tile.steamkreations:heater.NORMAL.name=Heater
+tile.steamkreations:heater.REINFORCED.name=Reinforced Heater
+tile.steamkreations:heater.CREATIVE.name=Creative Heater
 tile.steamkreations:steamer.NORMAL.name=Steamer
 tile.steamkreations:steamer.REINFORCED.name=Reinforced Steamer
 tile.steamkreations:steamer.CREATIVE.name=Creative Steamer

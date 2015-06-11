@@ -4,6 +4,8 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import de.kuratan.steamkreations.item.SKItems;
 import de.kuratan.steamkreations.utils.ComparableItemStack;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -26,12 +28,16 @@ public class ChocolateManager {
     }
 
     public static void initializeVanilla() {
-        addIngredient(new ItemStack(Items.apple), 0, 0.5F);
-        addIngredient(new ItemStack(Items.golden_apple, 1, 0), 2, 4.0F);
-        addIngredient(new ItemStack(Items.golden_apple, 1, 1), 4, 8.0F);
+        addIngredient(new ItemStack(Items.apple));
+        addIngredient(new ItemStack(Items.golden_apple, 1, 0));
+        addIngredient(new ItemStack(Items.golden_apple, 1, 1));
+        addIngredient(new ItemStack(Items.melon));
+        addIngredient(new ItemStack(Items.carrot));
+        addIngredient(new ItemStack(Items.sugar));
     }
 
     public static void initializeMod() {
+        addIngredient(new ItemStack(SKItems.steamedCarrot));
         GameRegistry.addSmelting(Items.apple, new ItemStack(SKItems.chocolate), 0);
     }
 
@@ -40,9 +46,19 @@ public class ChocolateManager {
     }
 
     public static void addIngredient(ItemStack itemStack, int healAmount, float saturationModifier) {
-        addIngredient(itemStack,
-                      new ChocolateIngredient(itemStack.getItem()).setHealAmount(healAmount)
-                                                                  .setSaturationModifier(saturationModifier));
+        addIngredient(itemStack, new ChocolateIngredient(itemStack.getItem()).setHealAmount(healAmount)
+                                                                             .setSaturationModifier(
+                                                                                     saturationModifier));
+    }
+
+    public static void addIngredient(ItemStack itemStack) {
+        Item item = itemStack.getItem();
+        if (item instanceof ItemFood) {
+            ItemFood itemFood = (ItemFood) item;
+            addIngredient(itemStack, itemFood.func_150905_g(itemStack), itemFood.func_150906_h(itemStack));
+        } else {
+            System.err.println("Failed to add chocolate ingredient: " + item.getUnlocalizedName() + "! No ItemFood");
+        }
     }
 
     public static void addIgredientToItemStack(ItemStack itemStack, ChocolateIngredient ingredient) {

@@ -1,6 +1,8 @@
 package de.kuratan.steamkreations.block;
 
 import cpw.mods.fml.common.registry.GameRegistry;
+import de.kuratan.steamkreations.block.heater.BlockHeater;
+import de.kuratan.steamkreations.block.heater.ItemBlockHeater;
 import de.kuratan.steamkreations.block.steam_generator.BlockSteamGenerator;
 import de.kuratan.steamkreations.block.steam_generator.ItemBlockSteamGenerator;
 import de.kuratan.steamkreations.block.steamer.BlockSteamer;
@@ -17,6 +19,7 @@ import java.util.ArrayList;
 
 public class SKBlocks {
     public static ArrayList<IInitializer> blocks = new ArrayList<IInitializer>();
+    public static Block heater;
     public static Block steamer;
     public static Block steamGenerator;
 
@@ -32,6 +35,7 @@ public class SKBlocks {
     }
 
     public static void initialization() {
+        heater = registerBlock(addBlock(new BlockHeater()), ItemBlockHeater.class);
         steamer = registerBlock(addBlock(new BlockSteamer()), ItemBlockSteamer.class);
         steamGenerator = registerBlock(addBlock(new BlockSteamGenerator()), ItemBlockSteamGenerator.class);
         for (IInitializer block : blocks) {
@@ -40,6 +44,9 @@ public class SKBlocks {
     }
 
     public static void postInitialization() {
+        GameRegistry.addRecipe(
+                new ShapedOreRecipe(heater, "i i", " b ", " f ", 'i', "ingotIron", 'f', Blocks.furnace, 'b',
+                                    Items.bucket));
         GameRegistry.addRecipe(
                 new ShapedOreRecipe(steamer, " i ", "ici", " b ", 'i', "ingotIron", 'c', Blocks.chest, 'b',
                                     Items.bucket));

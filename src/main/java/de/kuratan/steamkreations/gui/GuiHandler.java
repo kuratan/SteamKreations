@@ -1,6 +1,8 @@
 package de.kuratan.steamkreations.gui;
 
 import cpw.mods.fml.common.network.IGuiHandler;
+import de.kuratan.steamkreations.block.heater.TileEntityHeater;
+import de.kuratan.steamkreations.container.ContainerHeater;
 import de.kuratan.steamkreations.container.ContainerSteamGenerator;
 import de.kuratan.steamkreations.container.ContainerSteamer;
 import de.kuratan.steamkreations.block.steam_generator.TileEntitySteamGenerator;
@@ -13,6 +15,9 @@ public class GuiHandler implements IGuiHandler {
     public Object getServerGuiElement(int id, EntityPlayer entityPlayer, World world, int x, int y, int z) {
         SKGuis gui = SKGuis.values()[id];
         switch (gui) {
+            case HEATER:
+                TileEntityHeater tileEntityHeater = (TileEntityHeater) world.getTileEntity(x, y, z);
+                return new ContainerHeater(entityPlayer.inventory, tileEntityHeater);
             case STEAMER:
                 TileEntitySteamer tileEntitySteamer = (TileEntitySteamer) world.getTileEntity(x, y, z);
                 return new ContainerSteamer(entityPlayer.inventory, tileEntitySteamer);
@@ -28,6 +33,9 @@ public class GuiHandler implements IGuiHandler {
     public Object getClientGuiElement(int id, EntityPlayer entityPlayer, World world, int x, int y, int z) {
         SKGuis gui = SKGuis.values()[id];
         switch (gui) {
+            case HEATER:
+                TileEntityHeater tileEntityHeater = (TileEntityHeater) world.getTileEntity(x, y, z);
+                return new GuiHeater(entityPlayer.inventory, tileEntityHeater);
             case STEAMER:
                 TileEntitySteamer tileEntitySteamer = (TileEntitySteamer) world.getTileEntity(x, y, z);
                 return new GuiSteamer(entityPlayer.inventory, tileEntitySteamer);
