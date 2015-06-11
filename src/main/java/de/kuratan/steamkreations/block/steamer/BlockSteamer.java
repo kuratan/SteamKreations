@@ -55,6 +55,7 @@ public class BlockSteamer extends BlockContainer implements ITileEntityProvider,
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public void getSubBlocks(Item blockItem, CreativeTabs tab, List subBlocks) {
         System.out.println(subBlocks.size());
         for (int i = 0; i < TileEntitySteamer.TYPES.values().length; i++) {

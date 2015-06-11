@@ -21,6 +21,8 @@ public class ItemChocolate extends ItemFood {
         setUnlocalizedName(ModReference.modPrefix("chocolate"));
         setTextureName(ModReference.modPrefix("chocolate"));
         setCreativeTab(SteamKreations.tab);
+        setMaxStackSize(16);
+        setAlwaysEdible();
     }
 
     @Override
@@ -46,6 +48,7 @@ public class ItemChocolate extends ItemFood {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public void addInformation(ItemStack itemStack, EntityPlayer entityPlayer, List list, boolean bool) {
         if (itemStack.stackTagCompound == null) {
             return;
