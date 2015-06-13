@@ -1,10 +1,8 @@
 package de.kuratan.steamkreations.block.heater;
 
 import de.kuratan.steamkreations.container.ContainerHeater;
-import de.kuratan.steamkreations.item.ItemChocolate;
-import de.kuratan.steamkreations.utils.managers.ChocolateManager;
-import de.kuratan.steamkreations.utils.managers.HeaterManager;
-import de.kuratan.steamkreations.utils.managers.HeaterRecipe;
+import de.kuratan.steamkreations.crafting.HeaterManager;
+import de.kuratan.steamkreations.crafting.HeaterRecipe;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;

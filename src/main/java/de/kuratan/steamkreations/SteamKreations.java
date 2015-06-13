@@ -7,11 +7,12 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import de.kuratan.steamkreations.block.SKBlocks;
 import de.kuratan.steamkreations.gui.GuiHandler;
 import de.kuratan.steamkreations.item.SKItems;
+import de.kuratan.steamkreations.lib.Log;
 import de.kuratan.steamkreations.lib.Reference;
 import de.kuratan.steamkreations.tileentity.SKTileEntities;
-import de.kuratan.steamkreations.utils.managers.ChocolateManager;
-import de.kuratan.steamkreations.utils.managers.HeaterManager;
-import de.kuratan.steamkreations.utils.managers.SteamerManager;
+import de.kuratan.steamkreations.crafting.ChocolateManager;
+import de.kuratan.steamkreations.crafting.HeaterManager;
+import de.kuratan.steamkreations.crafting.SteamerManager;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 
@@ -45,5 +46,6 @@ public class SteamKreations {
         HeaterManager.initialization();
         SKBlocks.postInitialization();
         SKItems.postInitialization();
+        Log.info("postInit done :)");
     }
 }

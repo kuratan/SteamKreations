@@ -2,8 +2,8 @@ package de.kuratan.steamkreations.item;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import de.kuratan.steamkreations.SteamKreations;
+import de.kuratan.steamkreations.lib.Reference;
 import de.kuratan.steamkreations.utils.IInitializer;
-import de.kuratan.steamkreations.utils.ModReference;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
@@ -27,18 +27,18 @@ public class SKItems {
     }
 
     public static Item registerItem(Item item) {
-        GameRegistry.registerItem(item, ModReference.getUnlocalizedInternalName(item));
+        GameRegistry.registerItem(item, Reference.getUnlocalizedInternalName(item));
         return item;
     }
 
     public static void initialization() {
         steamedCarrot = registerItem(
-                addItem(new ItemFood(6, 1.0F, false).setUnlocalizedName(ModReference.modPrefix("steamed_carrot"))
-                                                    .setTextureName(ModReference.modPrefix("steamed_carrot"))
+                addItem(new ItemFood(6, 1.0F, false).setUnlocalizedName(Reference.modPrefix("steamed_carrot"))
+                                                    .setTextureName(Reference.modPrefix("steamed_carrot"))
                                                     .setCreativeTab(SteamKreations.tab)));
         smallMeal = registerItem(
-                addItem(new ItemFood(10, 3.5F, false).setUnlocalizedName(ModReference.modPrefix("small_meal"))
-                                                     .setTextureName(ModReference.modPrefix("small_meal"))
+                addItem(new ItemFood(10, 3.5F, false).setUnlocalizedName(Reference.modPrefix("small_meal"))
+                                                     .setTextureName(Reference.modPrefix("small_meal"))
                                                      .setCreativeTab(SteamKreations.tab).setHasSubtypes(true)));
         chocolate = registerItem(addItem(new ItemChocolate()));
         OreDictionary.registerOre("foodSteamedVegetable", steamedCarrot);

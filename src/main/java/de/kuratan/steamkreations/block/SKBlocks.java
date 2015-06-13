@@ -7,8 +7,8 @@ import de.kuratan.steamkreations.block.steam_generator.BlockSteamGenerator;
 import de.kuratan.steamkreations.block.steam_generator.ItemBlockSteamGenerator;
 import de.kuratan.steamkreations.block.steamer.BlockSteamer;
 import de.kuratan.steamkreations.block.steamer.ItemBlockSteamer;
+import de.kuratan.steamkreations.lib.Reference;
 import de.kuratan.steamkreations.utils.IInitializer;
-import de.kuratan.steamkreations.utils.ModReference;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -31,7 +31,7 @@ public class SKBlocks {
     }
 
     public static Block registerBlock(final Block block, final Class<? extends ItemBlock> itemBlock) {
-        return GameRegistry.registerBlock(block, itemBlock, ModReference.getUnlocalizedInternalName(block));
+        return GameRegistry.registerBlock(block, itemBlock, Reference.getUnlocalizedInternalName(block));
     }
 
     public static void initialization() {

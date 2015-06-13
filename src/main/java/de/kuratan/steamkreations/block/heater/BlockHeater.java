@@ -4,10 +4,9 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import de.kuratan.steamkreations.SteamKreations;
-import de.kuratan.steamkreations.block.steamer.TileEntitySteamer;
 import de.kuratan.steamkreations.gui.SKGuis;
+import de.kuratan.steamkreations.lib.Reference;
 import de.kuratan.steamkreations.utils.IInitializer;
-import de.kuratan.steamkreations.utils.ModReference;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
@@ -32,8 +31,8 @@ public class BlockHeater extends BlockContainer implements ITileEntityProvider, 
 
     public BlockHeater() {
         super(Material.iron);
-        this.setBlockName(ModReference.modPrefix("heater"));
-        this.setBlockTextureName(ModReference.modPrefix("heater"));
+        this.setBlockName(Reference.modPrefix("heater"));
+        this.setBlockTextureName(Reference.modPrefix("heater"));
         this.setHardness(1.0f);
         this.setStepSound(soundTypeMetal);
         this.setCreativeTab(SteamKreations.tab);
@@ -46,7 +45,7 @@ public class BlockHeater extends BlockContainer implements ITileEntityProvider, 
 
     @Override
     public boolean initialization() {
-        GameRegistry.registerTileEntity(TileEntityHeater.class, ModReference.getUnlocalizedInternalNameWithMod(this));
+        GameRegistry.registerTileEntity(TileEntityHeater.class, Reference.getUnlocalizedInternalNameWithMod(this));
         return true;
     }
 

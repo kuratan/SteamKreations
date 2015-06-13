@@ -1,6 +1,7 @@
-package de.kuratan.steamkreations.utils.managers;
+package de.kuratan.steamkreations.crafting;
 
 import de.kuratan.steamkreations.item.SKItems;
+import de.kuratan.steamkreations.lib.Log;
 import de.kuratan.steamkreations.utils.ComparableItemStack;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;

@@ -1,4 +1,4 @@
-package de.kuratan.steamkreations.utils.managers;
+package de.kuratan.steamkreations.crafting;
 
 import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;

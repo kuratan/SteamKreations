@@ -1,6 +1,6 @@
 package de.kuratan.steamkreations.block.steamer;
 
-import de.kuratan.steamkreations.utils.managers.SteamerManager;
+import de.kuratan.steamkreations.crafting.SteamerManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;

@@ -5,8 +5,8 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import de.kuratan.steamkreations.SteamKreations;
 import de.kuratan.steamkreations.gui.SKGuis;
+import de.kuratan.steamkreations.lib.Reference;
 import de.kuratan.steamkreations.utils.IInitializer;
-import de.kuratan.steamkreations.utils.ModReference;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
@@ -31,8 +31,8 @@ public class BlockSteamGenerator extends BlockContainer implements ITileEntityPr
 
     public BlockSteamGenerator() {
         super(Material.iron);
-        this.setBlockName(ModReference.modPrefix("steam_generator"));
-        this.setBlockTextureName(ModReference.modPrefix("steam_generator"));
+        this.setBlockName(Reference.modPrefix("steam_generator"));
+        this.setBlockTextureName(Reference.modPrefix("steam_generator"));
         this.setHardness(1.0f);
         this.setStepSound(soundTypeMetal);
         this.setCreativeTab(SteamKreations.tab);
@@ -46,7 +46,7 @@ public class BlockSteamGenerator extends BlockContainer implements ITileEntityPr
     @Override
     public boolean initialization() {
         GameRegistry.registerTileEntity(TileEntitySteamGenerator.class,
-                                        ModReference.getUnlocalizedInternalNameWithMod(this));
+                                        Reference.getUnlocalizedInternalNameWithMod(this));
         return true;
     }
 

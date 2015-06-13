@@ -1,15 +1,14 @@
 package de.kuratan.steamkreations.item;
 
 import de.kuratan.steamkreations.SteamKreations;
-import de.kuratan.steamkreations.utils.ModReference;
-import de.kuratan.steamkreations.utils.managers.ChocolateIngredient;
-import de.kuratan.steamkreations.utils.managers.ChocolateManager;
+import de.kuratan.steamkreations.lib.Reference;
+import de.kuratan.steamkreations.crafting.ChocolateIngredient;
+import de.kuratan.steamkreations.crafting.ChocolateManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.IIcon;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 
@@ -18,8 +17,8 @@ import java.util.List;
 public class ItemChocolate extends ItemFood {
     public ItemChocolate() {
         super(0, 0F, false);
-        setUnlocalizedName(ModReference.modPrefix("chocolate"));
-        setTextureName(ModReference.modPrefix("chocolate"));
+        setUnlocalizedName(Reference.modPrefix("chocolate"));
+        setTextureName(Reference.modPrefix("chocolate"));
         setCreativeTab(SteamKreations.tab);
         setMaxStackSize(16);
         setAlwaysEdible();

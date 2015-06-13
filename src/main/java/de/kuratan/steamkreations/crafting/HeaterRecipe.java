@@ -1,4 +1,4 @@
-package de.kuratan.steamkreations.utils.managers;
+package de.kuratan.steamkreations.crafting;
 
 import de.kuratan.steamkreations.container.ContainerHeater;
 import de.kuratan.steamkreations.item.ItemChocolate;

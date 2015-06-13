@@ -1,4 +1,4 @@
-package de.kuratan.steamkreations.utils.managers;
+package de.kuratan.steamkreations.crafting;
 
 import de.kuratan.steamkreations.item.SKItems;
 import de.kuratan.steamkreations.utils.ComparableItemStack;

@@ -11,6 +11,7 @@
   "credits": "The Forge and FML guys",
   "logoFile": "",
   "screenshots": [],
+  "parent": "",
   "dependencies": []
 }
 ]

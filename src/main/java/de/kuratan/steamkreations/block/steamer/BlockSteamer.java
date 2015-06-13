@@ -5,8 +5,8 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import de.kuratan.steamkreations.SteamKreations;
 import de.kuratan.steamkreations.gui.SKGuis;
+import de.kuratan.steamkreations.lib.Reference;
 import de.kuratan.steamkreations.utils.IInitializer;
-import de.kuratan.steamkreations.utils.ModReference;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
@@ -31,8 +31,8 @@ public class BlockSteamer extends BlockContainer implements ITileEntityProvider,
 
     public BlockSteamer() {
         super(Material.iron);
-        this.setBlockName(ModReference.modPrefix("steamer"));
-        this.setBlockTextureName(ModReference.modPrefix("steamer"));
+        this.setBlockName(Reference.modPrefix("steamer"));
+        this.setBlockTextureName(Reference.modPrefix("steamer"));
         this.setHardness(1.0f);
         this.setStepSound(soundTypeMetal);
         this.setCreativeTab(SteamKreations.tab);
@@ -45,7 +45,7 @@ public class BlockSteamer extends BlockContainer implements ITileEntityProvider,
 
     @Override
     public boolean initialization() {
-        GameRegistry.registerTileEntity(TileEntitySteamer.class, ModReference.getUnlocalizedInternalNameWithMod(this));
+        GameRegistry.registerTileEntity(TileEntitySteamer.class, Reference.getUnlocalizedInternalNameWithMod(this));
         return true;
     }
 
