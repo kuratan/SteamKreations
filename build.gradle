@@ -30,7 +30,7 @@ configFile.withReader {
 config.version = "${config.version_prefix}${config.version}.${System.getenv("BUILD_NUMBER") ?: 0}${config.version_suffix}"
 version = config.version
 group= "de.kuratan.${config.mod_id}"
-archivesBaseName = "SteamKreations"
+archivesBaseName = config.archivesBaseName
 
 dependencies {
 
@@ -60,7 +60,7 @@ processResources
         include '*.info'
 
         // replace version and mcversion
-        expand 'version':project.version, 'mcversion':project.minecraft.version, 'mod_id':project.config.mod_id
+        expand 'version':project.version, 'mcversion':project.minecraft.version, 'mod_id':project.config.mod_id, 'mod_name':project.config.mod_name
     }
 
     // copy everything else, thats not the *.info
