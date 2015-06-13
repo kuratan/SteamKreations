@@ -38,11 +38,12 @@ dependencies {
 
 minecraft {
     version = "${config.version_minecraft}-${config.version_forge}"
-    runDir = "eclipse"
 
-    replaceIn "SteamKreations.java"
-    replace "@MOD_VERSION@", config.version
     replace "@MOD_ID@", config.mod_id
+    replace "@MOD_NAME@", config.mod_name
+    replace "@MOD_VERSION@", version
+
+    replaceIn "Reference.java"
 }
 
 processResources

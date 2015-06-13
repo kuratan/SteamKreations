@@ -1,13 +1,13 @@
 [
 {
   "modid": "${mod_id}",
-  "name": "Steam Kreations",
+  "name": "${mod_name}",
   "description": "",
   "version": "${version}",
   "mcversion": "${mcversion}",
   "url": "",
   "updateUrl": "",
-  "authorList": ["mod_dux"],
+  "authorList": ["Kuraron"],
   "credits": "The Forge and FML guys",
   "logoFile": "",
   "screenshots": [],

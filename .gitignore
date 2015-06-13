@@ -1,5 +1,5 @@
 build/
-eclipse/
+run/
 .idea/
 .gradle/
 *.iml

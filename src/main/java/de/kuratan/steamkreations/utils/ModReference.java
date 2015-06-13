@@ -1,6 +1,6 @@
 package de.kuratan.steamkreations.utils;
 
-import de.kuratan.steamkreations.SteamKreations;
+import de.kuratan.steamkreations.lib.Reference;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
@@ -12,7 +12,7 @@ public class ModReference {
     public static final String ITEMS_PATH = TEXTURE_PATH + "items/";
 
     public static ResourceLocation getGuiResourceLocation(String gui) {
-        return new ResourceLocation(SteamKreations.MOD_ID, GUI_PATH + gui + ".png");
+        return new ResourceLocation(Reference.MOD_ID, GUI_PATH + gui + ".png");
     }
 
     public static String getUnlocalizedInternalNameWithMod(Block block) {
@@ -24,14 +24,14 @@ public class ModReference {
     }
 
     public static String getUnlocalizedInternalName(Block block) {
-        return getUnlocalizedInternalNameWithMod(block).substring((SteamKreations.MOD_ID + ":").length());
+        return getUnlocalizedInternalNameWithMod(block).substring((Reference.MOD_ID + ":").length());
     }
 
     public static String getUnlocalizedInternalName(Item item) {
-        return getUnlocalizedInternalNameWithMod(item).substring((SteamKreations.MOD_ID + ":").length());
+        return getUnlocalizedInternalNameWithMod(item).substring((Reference.MOD_ID + ":").length());
     }
 
     public static String modPrefix(String base) {
-        return SteamKreations.MOD_ID + ":" + base;
+        return Reference.MOD_ID + ":" + base;
     }
 }
