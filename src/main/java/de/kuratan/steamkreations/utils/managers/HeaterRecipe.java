@@ -40,4 +40,9 @@ public class HeaterRecipe {
     public ItemStack getOutput() {
         return output;
     }
+
+    @Override
+    public String toString() {
+        return "[" + input + "," + additions + "->" + output + "@" + duration + "]";
+    }
 }

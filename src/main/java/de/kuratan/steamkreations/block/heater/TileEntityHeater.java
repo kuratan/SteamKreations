@@ -1,6 +1,8 @@
 package de.kuratan.steamkreations.block.heater;
 
 import de.kuratan.steamkreations.container.ContainerHeater;
+import de.kuratan.steamkreations.item.ItemChocolate;
+import de.kuratan.steamkreations.utils.managers.ChocolateManager;
 import de.kuratan.steamkreations.utils.managers.HeaterManager;
 import de.kuratan.steamkreations.utils.managers.HeaterRecipe;
 import net.minecraft.entity.player.EntityPlayer;
@@ -283,7 +285,15 @@ public class TileEntityHeater extends TileFluidHandler implements ISidedInventor
 
             if (this.recipe != null) {
                 if (cookTime == 0) {
-                    this.setInventorySlotContents(ContainerHeater.SLOTS.OUTPUT.getId(), this.recipe.getOutput());
+                    if (inventory[ContainerHeater.SLOTS.INPUT.getId()] != null &&
+                        inventory[ContainerHeater.SLOTS.INPUT.getId()].getItem() instanceof ItemChocolate) {
+                        ItemStack input = inventory[ContainerHeater.SLOTS.INPUT.getId()];
+                        ChocolateManager
+                                .addIgredientToItemStack(input, ChocolateManager.getIngredient(recipe.getOutput()));
+                        this.setInventorySlotContents(ContainerHeater.SLOTS.OUTPUT.getId(), input);
+                    } else {
+                        this.setInventorySlotContents(ContainerHeater.SLOTS.OUTPUT.getId(), this.recipe.getOutput());
+                    }
                     this.setInventorySlotContents(ContainerHeater.SLOTS.INPUT.getId(), null);
                     this.setInventorySlotContents(ContainerHeater.SLOTS.ADDITION1.getId(), null);
                     this.setInventorySlotContents(ContainerHeater.SLOTS.ADDITION2.getId(), null);
@@ -306,8 +316,7 @@ public class TileEntityHeater extends TileFluidHandler implements ISidedInventor
         recipe = HeaterManager.getRecipe(inventory);
         if (recipe != null) {
             this.cookTime = recipe.getDuration();
-        }
-        else {
+        } else {
             this.cookTime = -1;
         }
     }

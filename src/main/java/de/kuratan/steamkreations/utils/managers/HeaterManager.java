@@ -28,6 +28,11 @@ public class HeaterManager {
         additions.add(new ItemStack(Items.dye, 1, 3));
         additions.add(new ItemStack(Items.milk_bucket));
         addRecipe(null, additions, new ItemStack(SKItems.chocolate), 20);
+        for (Map.Entry<ComparableItemStack, ChocolateIngredient> entry : ChocolateManager.getIngredients().entrySet()) {
+            additions.clear();
+            additions.add(entry.getKey().toItemStack());
+            addRecipe(new ItemStack(SKItems.chocolate), additions, entry.getKey().toItemStack(), 20);
+        }
     }
 
     public static void addRecipe(ItemStack input, List<ItemStack> additions, ItemStack output, int duration) {
@@ -50,11 +55,13 @@ public class HeaterManager {
 }
 
 class HeaterRecipeKey {
-    protected ItemStack key;
+    protected ComparableItemStack key;
     protected List<ComparableItemStack> additions;
 
     public HeaterRecipeKey(ItemStack key, List<ItemStack> keys) {
-        this.key = key;
+        if (key != null) {
+            this.key = new ComparableItemStack(key);
+        }
         this.additions = new ArrayList<ComparableItemStack>();
         for (ItemStack itemStack : keys) {
             this.additions.add(new ComparableItemStack(itemStack));
@@ -77,7 +84,7 @@ class HeaterRecipeKey {
 
     @Override
     public String toString() {
-        StringBuffer sb = new StringBuffer("{" + (key != null ? key.toString() : "null" + "|"));
+        StringBuffer sb = new StringBuffer("{" + (key != null ? key.toString() : "null") + "|");
         for (ComparableItemStack addition : additions) {
             sb.append(addition + ",");
         }
@@ -89,7 +96,8 @@ class HeaterRecipeKey {
     public boolean equals(Object obj) {
         if (obj instanceof HeaterRecipeKey) {
             HeaterRecipeKey hrk = (HeaterRecipeKey) obj;
-            if (this.key == hrk.key && this.additions.size() == hrk.additions.size()) {
+            if ((this.key == null && hrk.key == null || this.key != null && this.key.equals(hrk.key)) &&
+                this.additions.size() == hrk.additions.size()) {
                 for (int i = 0; i < additions.size(); i++) {
                     if (!additions.get(i).isEqual(hrk.additions.get(i))) {
                         return false;
@@ -106,7 +114,7 @@ class HeaterRecipeKey {
         int hash = 0;
         if (this.key != null) {
             // Damage is 16bit -> shift id by 16 to combine
-            hash += (0xFFFF | key.getItemDamage()) | Item.getIdFromItem(key.getItem()) << 16;
+            hash += (0xFFFF | key.getDamage()) | Item.getIdFromItem(key.getItem()) << 16;
         }
         return hash;
     }

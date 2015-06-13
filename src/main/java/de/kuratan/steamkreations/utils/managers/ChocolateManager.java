@@ -71,6 +71,10 @@ public class ChocolateManager {
         return ingredients.get(new ComparableItemStack(itemStack));
     }
 
+    public static Map<ComparableItemStack, ChocolateIngredient> getIngredients() {
+        return ingredients;
+    }
+
     public static int getHealAmountFromItemStack(ItemStack itemStack) {
         int healAmount = 0;
         for (ChocolateIngredient ingredient : getIngredientsFromItemStack(itemStack)) {
@@ -110,7 +114,7 @@ public class ChocolateManager {
         if (root == null) {
             root = new NBTTagCompound();
         }
-        NBTTagList list = root.getTagList(NBT_TAGLIST_KEY, 10);
+        NBTTagList list = new NBTTagList();
         for (ChocolateIngredient ingredient : ingredients) {
             NBTTagCompound tag = new NBTTagCompound();
             ingredient.writeToNBT(tag);
