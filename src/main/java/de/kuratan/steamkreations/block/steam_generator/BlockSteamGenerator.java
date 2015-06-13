@@ -58,11 +58,9 @@ public class BlockSteamGenerator extends BlockContainer implements ITileEntityPr
     @Override
     @SuppressWarnings("unchecked")
     public void getSubBlocks(Item blockItem, CreativeTabs tab, List subBlocks) {
-        System.out.println(subBlocks.size());
         for (int i = 0; i < TileEntitySteamGenerator.TYPES.values().length; i++) {
             subBlocks.add(new ItemStack(blockItem, 1, i));
         }
-        System.out.println(subBlocks.size());
     }
 
     @Override

@@ -10,6 +10,7 @@ import de.kuratan.steamkreations.gui.GuiHandler;
 import de.kuratan.steamkreations.item.SKItems;
 import de.kuratan.steamkreations.tileentity.SKTileEntities;
 import de.kuratan.steamkreations.utils.managers.ChocolateManager;
+import de.kuratan.steamkreations.utils.managers.HeaterManager;
 import de.kuratan.steamkreations.utils.managers.SteamerManager;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -43,6 +44,7 @@ public class SteamKreations {
     public void postInit(FMLPostInitializationEvent event) {
         SteamerManager.initialization();
         ChocolateManager.initialize();
+        HeaterManager.initialization();
         SKBlocks.postInitialization();
         SKItems.postInitialization();
     }

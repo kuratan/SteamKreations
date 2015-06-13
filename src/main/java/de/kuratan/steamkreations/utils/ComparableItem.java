@@ -28,17 +28,11 @@ public class ComparableItem {
         if (this.item.equals(o.getItem())) {
             return true;
         }
-        if (this.item.delegate.get().equals(o.getItem().delegate.get())) {
-            return true;
-        }
-        return false;
+        return this.item.delegate.get().equals(o.getItem().delegate.get());
     }
 
     public boolean isEqual(ComparableItem o) {
-        if (this.damage == o.getDamage()) {
-            return isEqualItem(o);
-        }
-        return false;
+        return this.damage == o.getDamage() && isEqualItem(o);
     }
 
     @Override
@@ -50,5 +44,10 @@ public class ComparableItem {
     public int hashCode() {
         // Damage is 16bit -> shift id by 16 to combine
         return (0xFFFF | damage) | Item.getIdFromItem(item) << 16;
+    }
+
+    @Override
+    public String toString() {
+        return this.item.getUnlocalizedName() + ":" + this.damage;
     }
 }

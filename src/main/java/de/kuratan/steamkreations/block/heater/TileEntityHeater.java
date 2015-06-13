@@ -1,6 +1,8 @@
 package de.kuratan.steamkreations.block.heater;
 
-import de.kuratan.steamkreations.utils.managers.SteamerManager;
+import de.kuratan.steamkreations.container.ContainerHeater;
+import de.kuratan.steamkreations.utils.managers.HeaterManager;
+import de.kuratan.steamkreations.utils.managers.HeaterRecipe;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
@@ -46,6 +48,7 @@ public class TileEntityHeater extends TileFluidHandler implements ISidedInventor
     protected TYPES type;
     protected ItemStack[] inventory;
     protected int cookTime;
+    protected HeaterRecipe recipe;
 
     public TileEntityHeater() {
         super();
@@ -59,8 +62,9 @@ public class TileEntityHeater extends TileFluidHandler implements ISidedInventor
     public void setType(TYPES type) {
         this.type = type;
         this.tank = new FluidTank(type.getSteamCapacity());
-        this.inventory = new ItemStack[5];
-        this.cookTime = 0;
+        this.inventory = new ItemStack[ContainerHeater.SLOTS.values().length];
+        this.cookTime = -1;
+        this.recipe = null;
     }
 
     public TYPES getType() {
@@ -107,6 +111,7 @@ public class TileEntityHeater extends TileFluidHandler implements ISidedInventor
                 inventory[index] = ItemStack.loadItemStackFromNBT(slot);
             }
         }
+        this.calculateSlotData(ContainerHeater.SLOTS.INPUT.getId());
     }
 
     /**
@@ -181,6 +186,7 @@ public class TileEntityHeater extends TileFluidHandler implements ISidedInventor
 
     /**
      * Decrements slot using setInventorySlotContents.
+     *
      * @param slot
      * @param decrement
      * @return
@@ -216,6 +222,7 @@ public class TileEntityHeater extends TileFluidHandler implements ISidedInventor
 
     /**
      * Sets contents of slot.
+     *
      * @param slot
      * @param itemStack
      */
@@ -226,6 +233,7 @@ public class TileEntityHeater extends TileFluidHandler implements ISidedInventor
             if (itemStack != null && itemStack.stackSize > getInventoryStackLimit()) {
                 itemStack.stackSize = getInventoryStackLimit();
             }
+            calculateSlotData(slot);
         }
     }
 
@@ -273,7 +281,34 @@ public class TileEntityHeater extends TileFluidHandler implements ISidedInventor
         if (tank.getFluidAmount() >= type.getSteamPerTick() || this.type == TYPES.CREATIVE) {
             tank.drain(type.getSteamPerTick(), true);
 
+            if (this.recipe != null) {
+                if (cookTime == 0) {
+                    this.setInventorySlotContents(ContainerHeater.SLOTS.OUTPUT.getId(), this.recipe.getOutput());
+                    this.setInventorySlotContents(ContainerHeater.SLOTS.INPUT.getId(), null);
+                    this.setInventorySlotContents(ContainerHeater.SLOTS.ADDITION1.getId(), null);
+                    this.setInventorySlotContents(ContainerHeater.SLOTS.ADDITION2.getId(), null);
+                    this.setInventorySlotContents(ContainerHeater.SLOTS.ADDITION3.getId(), null);
+                    this.setInventorySlotContents(ContainerHeater.SLOTS.ADDITION4.getId(), null);
+                    this.recipe = null;
+                } else if (this.cookTime > 0) {
+                    this.cookTime--;
+                }
+            }
+
             this.markDirty();
+        }
+    }
+
+    public void calculateSlotData(int slotNumber) {
+        if (slotNumber == ContainerHeater.SLOTS.OUTPUT.getId()) {
+            return;
+        }
+        recipe = HeaterManager.getRecipe(inventory);
+        if (recipe != null) {
+            this.cookTime = recipe.getDuration();
+        }
+        else {
+            this.cookTime = -1;
         }
     }
 }

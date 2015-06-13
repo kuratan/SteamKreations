@@ -290,7 +290,7 @@ public class TileEntitySteamer extends TileFluidHandler implements ISidedInvento
                     if (this.itemCookTime[i] == 0) {
                         // DEBUG - If slot was modified illegally log offense.
                         if (!this.cookSlot(i)) {
-                            System.out.println("Could not cook item!");
+                            System.err.println("Could not cook item!");
                         }
                     }
                 }

@@ -58,11 +58,9 @@ public class BlockHeater extends BlockContainer implements ITileEntityProvider, 
     @Override
     @SuppressWarnings("unchecked")
     public void getSubBlocks(Item blockItem, CreativeTabs tab, List subBlocks) {
-        System.out.println(subBlocks.size());
         for (int i = 0; i < TileEntityHeater.TYPES.values().length; i++) {
             subBlocks.add(new ItemStack(blockItem, 1, i));
         }
-        System.out.println(subBlocks.size());
     }
 
     @Override
