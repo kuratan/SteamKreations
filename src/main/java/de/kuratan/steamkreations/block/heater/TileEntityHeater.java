@@ -285,20 +285,7 @@ public class TileEntityHeater extends TileFluidHandler implements ISidedInventor
 
             if (this.recipe != null) {
                 if (cookTime == 0) {
-                    if (inventory[ContainerHeater.SLOTS.INPUT.getId()] != null &&
-                        inventory[ContainerHeater.SLOTS.INPUT.getId()].getItem() instanceof ItemChocolate) {
-                        ItemStack input = inventory[ContainerHeater.SLOTS.INPUT.getId()];
-                        ChocolateManager
-                                .addIgredientToItemStack(input, ChocolateManager.getIngredient(recipe.getOutput()));
-                        this.setInventorySlotContents(ContainerHeater.SLOTS.OUTPUT.getId(), input);
-                    } else {
-                        this.setInventorySlotContents(ContainerHeater.SLOTS.OUTPUT.getId(), this.recipe.getOutput());
-                    }
-                    this.setInventorySlotContents(ContainerHeater.SLOTS.INPUT.getId(), null);
-                    this.setInventorySlotContents(ContainerHeater.SLOTS.ADDITION1.getId(), null);
-                    this.setInventorySlotContents(ContainerHeater.SLOTS.ADDITION2.getId(), null);
-                    this.setInventorySlotContents(ContainerHeater.SLOTS.ADDITION3.getId(), null);
-                    this.setInventorySlotContents(ContainerHeater.SLOTS.ADDITION4.getId(), null);
+                    recipe.handleInventory(this);
                     this.recipe = null;
                 } else if (this.cookTime > 0) {
                     this.cookTime--;
