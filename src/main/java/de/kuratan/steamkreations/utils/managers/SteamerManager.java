@@ -6,7 +6,6 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemFishFood;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.FurnaceRecipes;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -20,7 +19,6 @@ public class SteamerManager {
         recipes.clear();
         initializeVanilla();
         initializeMod();
-        System.out.println("Knowing " + recipes.size() + " recipes for steaming");
     }
 
     public static void initializeVanilla() {

@@ -15,7 +15,6 @@ public class HeaterManager {
         recipes.clear();
         initializeVanilla();
         initializeMod();
-        System.out.println("Knowing " + recipes.size() + " recipes for heating");
     }
 
     public static void initializeVanilla() {

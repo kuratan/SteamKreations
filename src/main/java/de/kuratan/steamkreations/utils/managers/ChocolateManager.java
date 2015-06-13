@@ -1,6 +1,5 @@
 package de.kuratan.steamkreations.utils.managers;
 
-import cpw.mods.fml.common.registry.GameRegistry;
 import de.kuratan.steamkreations.item.SKItems;
 import de.kuratan.steamkreations.utils.ComparableItemStack;
 import net.minecraft.init.Items;
@@ -20,11 +19,10 @@ public class ChocolateManager {
     private static final Map<ComparableItemStack, ChocolateIngredient> ingredients =
             new HashMap<ComparableItemStack, ChocolateIngredient>();
 
-    public static void initialize() {
+    public static void initialization() {
         ingredients.clear();
         initializeVanilla();
         initializeMod();
-        System.out.println("Knowing " + ingredients.size() + " additions to chocolate");
     }
 
     public static void initializeVanilla() {

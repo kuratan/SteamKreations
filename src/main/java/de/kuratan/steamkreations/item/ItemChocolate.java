@@ -53,7 +53,7 @@ public class ItemChocolate extends ItemFood {
             list.add(EnumChatFormatting.AQUA +
                      StatCollector.translateToLocal(ingredient.getItem().getUnlocalizedName() + ".name"));
         }
-        list.add(EnumChatFormatting.GRAY + "HealAmount: " + func_150905_g(itemStack));
-        list.add(EnumChatFormatting.GRAY + "SaturationModifier: " + func_150906_h(itemStack));
+        list.add(EnumChatFormatting.GRAY + String.format("HealAmount: %d", func_150905_g(itemStack)));
+        list.add(EnumChatFormatting.GRAY + String.format("SaturationModifier: %.1f", func_150906_h(itemStack)));
     }
 }
