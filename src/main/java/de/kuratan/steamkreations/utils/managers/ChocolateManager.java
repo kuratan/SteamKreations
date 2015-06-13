@@ -33,12 +33,10 @@ public class ChocolateManager {
         addIngredient(new ItemStack(Items.golden_apple, 1, 1));
         addIngredient(new ItemStack(Items.melon));
         addIngredient(new ItemStack(Items.carrot));
-        addIngredient(new ItemStack(Items.sugar));
     }
 
     public static void initializeMod() {
         addIngredient(new ItemStack(SKItems.steamedCarrot));
-        GameRegistry.addSmelting(Items.apple, new ItemStack(SKItems.chocolate), 0);
     }
 
     public static void addIngredient(ItemStack itemStack, ChocolateIngredient chocolateIngredient) {
