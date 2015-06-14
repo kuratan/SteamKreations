@@ -1,5 +1,7 @@
 package de.kuratan.steamkreations.block.steam_generator;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.ISidedInventory;
@@ -212,6 +214,20 @@ public class TileEntitySteamGenerator extends TileFluidHandler implements IFluid
         return true;
     }
 
+
+    public boolean isBurning() {
+        return this.deviceBurnTime > 0;
+    }
+
+    @SideOnly(Side.CLIENT)
+    public int getBurnTimeRemainingScaled(int factor) {
+        if(this.deviceBurnTime == 0) {
+            this.deviceBurnTime = 200;
+        }
+
+        return this.deviceBurnTime * factor / 200;
+    }
+
     @Override
     public void updateEntity() {
         if (this.deviceBurnTime == 0) {
@@ -223,6 +239,7 @@ public class TileEntitySteamGenerator extends TileFluidHandler implements IFluid
             if (type.equals(TYPES.CREATIVE)) {
                 this.deviceBurnTime = 200;
             }
+            this.markDirty();
         }
         if (this.deviceBurnTime > 0) {
             this.deviceBurnTime--;

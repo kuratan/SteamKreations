@@ -13,8 +13,8 @@ public class ContainerSteamGenerator extends Container {
 
     public ContainerSteamGenerator(final InventoryPlayer inventoryPlayer, final TileEntitySteamGenerator tileEntitySteamGenerator) {
         this.tileEntitySteamGenerator = tileEntitySteamGenerator;
-        this.addSlotToContainer(new Slot(tileEntitySteamGenerator, 0, 12 + 4 * 18, 8 + 1 * 18));
-        this.addSlotToContainer(new Slot(tileEntitySteamGenerator, 1, 12 + 4 * 18, 8 + 3 * 18));
+        this.addSlotToContainer(new Slot(tileEntitySteamGenerator, 0, 12 + 3 * 18, 8 + 2 * 18));
+        this.addSlotToContainer(new Slot(tileEntitySteamGenerator, 1, 12 + 5 * 18, 8 + 2 * 18));
 
         for (int inventoryRowIndex = 0; inventoryRowIndex < 3; ++inventoryRowIndex) {
             for (int inventoryColumnIndex = 0; inventoryColumnIndex < 9; ++inventoryColumnIndex) {

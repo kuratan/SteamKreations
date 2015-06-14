@@ -24,5 +24,10 @@ public class GuiSteamGenerator extends GuiContainer {
         int x = (width - xSize) / 2;
         int y = (height - ySize) / 2;
         drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
+        if (this.tileEntitySteamGenerator.isBurning()) {
+            int progress = this.tileEntitySteamGenerator.getBurnTimeRemainingScaled(13);
+            this.drawTexturedModalRect(x + 12 + 4 * 18, y + 10 + 2 * 18 + 12 - progress, xSize, 12 - progress, 14,
+                                       progress + 1);
+        }
     }
 }
