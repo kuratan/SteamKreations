@@ -1,6 +1,9 @@
 package de.kuratan.steamkreations.block.steamer;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import de.kuratan.steamkreations.crafting.SteamerManager;
+import de.kuratan.steamkreations.crafting.SteamerRecipe;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
@@ -55,6 +58,7 @@ public class TileEntitySteamer extends TileFluidHandler implements ISidedInvento
     protected TYPES type;
     protected ItemStack[] inventory;
     protected int[] itemCookTime;
+    protected SteamerRecipe[] recipes;
 
     public TileEntitySteamer() {
         super();
@@ -70,6 +74,7 @@ public class TileEntitySteamer extends TileFluidHandler implements ISidedInvento
         this.tank = new FluidTank(type.getSteamCapacity());
         this.inventory = new ItemStack[type.getSlots()];
         this.itemCookTime = new int[type.getSlots()];
+        this.recipes = new SteamerRecipe[type.getSlots()];
     }
 
     public TYPES getType() {
@@ -114,6 +119,7 @@ public class TileEntitySteamer extends TileFluidHandler implements ISidedInvento
             byte index = slot.getByte("slot");
             if (index >= 0 && index < getSizeInventory()) {
                 inventory[index] = ItemStack.loadItemStackFromNBT(slot);
+                calculateSlotData(index);
             }
         }
     }
@@ -307,9 +313,10 @@ public class TileEntitySteamer extends TileFluidHandler implements ISidedInvento
     protected boolean cookSlot(int slot) {
         ItemStack itemStack = getStackInSlot(slot);
         ItemStack newStack = null;
-        if (SteamerManager.isValidInputItemStack(itemStack)) {
-            newStack = SteamerManager.getRecipe(itemStack).getOutput();
+        if (recipes[slot] != null) {
+            newStack = recipes[slot].getOutput();
             newStack.stackSize = itemStack.stackSize;
+            recipes[slot] = null;
         }
         if (newStack != null) {
             this.setInventorySlotContents(slot, newStack);
@@ -326,11 +333,31 @@ public class TileEntitySteamer extends TileFluidHandler implements ISidedInvento
      */
     public void calculateSlotData(int slot) {
         ItemStack itemStack = getStackInSlot(slot);
-        int duration = -1;
-        if (itemStack != null && itemStack.stackSize > 0 && SteamerManager.isValidInputItemStack(itemStack)) {
-            duration = SteamerManager.getRecipe(this.inventory[slot]).getDuration();
+        this.itemCookTime[slot] = -1;
+        if (itemStack != null && itemStack.stackSize > 0 && recipes[slot] == null && SteamerManager.isValidInputItemStack(itemStack)) {
+            recipes[slot] = SteamerManager.getRecipe(this.inventory[slot]);
+            this.itemCookTime[slot] = recipes[slot].getDuration();
+        } else {
+            recipes[slot] = null;
         }
-        this.itemCookTime[slot] = duration;
         this.markDirty();
+    }
+
+    public boolean active() {
+        for (SteamerRecipe recipe : recipes) {
+            if (recipe != null) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isSlotActive(int slot) {
+        return itemCookTime[slot] >= 0 && recipes[slot] != null;
+    }
+
+    @SideOnly(Side.CLIENT)
+    public int getSlotDoneProgressScaled(int slot, int factor) {
+        return (recipes[slot].getDuration() - itemCookTime[slot]) * factor / recipes[slot].getDuration();
     }
 }

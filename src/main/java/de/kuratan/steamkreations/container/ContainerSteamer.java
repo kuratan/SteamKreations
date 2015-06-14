@@ -10,17 +10,47 @@ import net.minecraft.item.ItemStack;
 
 public class ContainerSteamer extends Container {
 
+    public enum SLOTS {
+        SMALL(0, 12 + 4 * 18, 8 + 2 * 18),
+        BIG1(0, 3 + 4 * 18, 17 + 18),
+        BIG2(1, 3 + 5 * 18, 17 + 18),
+        BIG3(2, 3 + 4 * 18, 17 + 2 * 18),
+        BIG4(3, 3 + 5 * 18, 17 + 2 * 18);
+
+        private int id;
+        private int x;
+        private int y;
+
+        SLOTS(int id, int x, int y) {
+            this.id = id;
+            this.x = x;
+            this.y = y;
+        }
+
+        public int getId() {
+            return id;
+        }
+
+        public int getX() {
+            return x;
+        }
+
+        public int getY() {
+            return y;
+        }
+    }
+
     protected TileEntitySteamer tileEntitySteamer;
 
     public ContainerSteamer(final InventoryPlayer inventoryPlayer, final TileEntitySteamer tileEntitySteamer) {
         this.tileEntitySteamer = tileEntitySteamer;
         if (tileEntitySteamer.getType() != TileEntitySteamer.TYPES.NORMAL) {
-            this.addSlotToContainer(new SlotSteamer(tileEntitySteamer, 0, 3 + 4 * 18, 17 + 18));
-            this.addSlotToContainer(new SlotSteamer(tileEntitySteamer, 1, 3 + 5 * 18, 17 + 18));
-            this.addSlotToContainer(new SlotSteamer(tileEntitySteamer, 2, 3 + 4 * 18, 17 + 2 * 18));
-            this.addSlotToContainer(new SlotSteamer(tileEntitySteamer, 3, 3 + 5 * 18, 17 + 2 * 18));
+            this.addSlotToContainer(new SlotSteamer(tileEntitySteamer, SLOTS.BIG1));
+            this.addSlotToContainer(new SlotSteamer(tileEntitySteamer, SLOTS.BIG2));
+            this.addSlotToContainer(new SlotSteamer(tileEntitySteamer, SLOTS.BIG3));
+            this.addSlotToContainer(new SlotSteamer(tileEntitySteamer, SLOTS.BIG4));
         } else {
-            this.addSlotToContainer(new SlotSteamer(tileEntitySteamer, 0, 12 + 4 * 18, 8 + 2 * 18));
+            this.addSlotToContainer(new SlotSteamer(tileEntitySteamer, SLOTS.SMALL));
         }
 
         for (int inventoryRowIndex = 0; inventoryRowIndex < 3; ++inventoryRowIndex) {
@@ -74,8 +104,8 @@ public class ContainerSteamer extends Container {
 
     class SlotSteamer extends Slot {
 
-        public SlotSteamer(IInventory p_i1824_1_, int p_i1824_2_, int p_i1824_3_, int p_i1824_4_) {
-            super(p_i1824_1_, p_i1824_2_, p_i1824_3_, p_i1824_4_);
+        public SlotSteamer(IInventory p_i1824_1_, SLOTS slot) {
+            super(p_i1824_1_, slot.getId(), slot.getX(), slot.getY());
         }
 
         @Override
