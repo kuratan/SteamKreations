@@ -14,6 +14,10 @@ public class Reference {
     public static final String GUI_PATH = TEXTURE_PATH + "gui/";
     public static final String BLOCKS_PATH = TEXTURE_PATH + "blocks/";
 
+    public static final int TICKS_PER_SECOND = 20;
+    public static final int TICKS_PER_MINUTE = 60 * TICKS_PER_SECOND;
+    public static final int TICKS_PER_HOUR = 60 * TICKS_PER_MINUTE;
+
     public static ResourceLocation getGuiResourceLocation(String gui) {
         return new ResourceLocation(MOD_ID, GUI_PATH + gui + ".png");
     }

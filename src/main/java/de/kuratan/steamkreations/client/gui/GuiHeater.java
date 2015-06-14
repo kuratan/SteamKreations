@@ -1,7 +1,8 @@
-package de.kuratan.steamkreations.gui;
+package de.kuratan.steamkreations.client.gui;
 
 import de.kuratan.steamkreations.block.heater.TileEntityHeater;
 import de.kuratan.steamkreations.container.ContainerHeater;
+import de.kuratan.steamkreations.item.SKItems;
 import de.kuratan.steamkreations.lib.Reference;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -25,5 +26,8 @@ public class GuiHeater extends GuiContainer {
         int x = (width - xSize) / 2;
         int y = (height - ySize) / 2;
         drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
+        if (tileEntityHeater.active()) {
+            drawTexturedModalRect(x + 114, y + 43, xSize, 0, 1 + tileEntityHeater.getCookProgressScaled(24), 16);
+        }
     }
 }

@@ -1,4 +1,4 @@
-package de.kuratan.steamkreations.gui;
+package de.kuratan.steamkreations.client.gui;
 
 public enum SKGuis {
     HEATER,

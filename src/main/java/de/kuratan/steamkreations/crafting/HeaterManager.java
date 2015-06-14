@@ -26,11 +26,11 @@ public class HeaterManager {
         additions.add(new ItemStack(Items.sugar));
         additions.add(new ItemStack(Items.dye, 1, 3));
         additions.add(new ItemStack(Items.milk_bucket));
-        addRecipe(null, additions, new ItemStack(SKItems.chocolate), 20);
+        addRecipe(null, additions, new ItemStack(SKItems.chocolate), 200);
         for (Map.Entry<ComparableItemStack, ChocolateIngredient> entry : ChocolateManager.getIngredients().entrySet()) {
             additions.clear();
             additions.add(entry.getKey().toItemStack());
-            addRecipe(new ItemStack(SKItems.chocolate), additions, entry.getKey().toItemStack(), 20);
+            addRecipe(new ItemStack(SKItems.chocolate), additions, entry.getKey().toItemStack(), 160);
         }
     }
 

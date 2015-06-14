@@ -4,7 +4,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import de.kuratan.steamkreations.SteamKreations;
-import de.kuratan.steamkreations.gui.SKGuis;
+import de.kuratan.steamkreations.client.gui.SKGuis;
 import de.kuratan.steamkreations.lib.Reference;
 import de.kuratan.steamkreations.utils.IInitializer;
 import net.minecraft.block.BlockContainer;

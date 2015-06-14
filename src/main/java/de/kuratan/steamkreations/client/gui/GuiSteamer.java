@@ -1,4 +1,4 @@
-package de.kuratan.steamkreations.gui;
+package de.kuratan.steamkreations.client.gui;
 
 import de.kuratan.steamkreations.container.ContainerSteamer;
 import de.kuratan.steamkreations.block.steamer.TileEntitySteamer;

@@ -1,5 +1,7 @@
 package de.kuratan.steamkreations.block.heater;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import de.kuratan.steamkreations.container.ContainerHeater;
 import de.kuratan.steamkreations.crafting.HeaterManager;
 import de.kuratan.steamkreations.crafting.HeaterRecipe;
@@ -271,6 +273,15 @@ public class TileEntityHeater extends TileFluidHandler implements ISidedInventor
     @Override
     public boolean isItemValidForSlot(int slot, ItemStack itemStack) {
         return false;
+    }
+
+    public boolean active() {
+        return this.recipe != null && this.cookTime > 0;
+    }
+
+    @SideOnly(Side.CLIENT)
+    public int getCookProgressScaled(int width) {
+        return (this.recipe.getDuration() - this.cookTime) * width / this.recipe.getDuration();
     }
 
     /**

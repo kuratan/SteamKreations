@@ -1,4 +1,4 @@
-package de.kuratan.steamkreations.gui;
+package de.kuratan.steamkreations.client.gui;
 
 import cpw.mods.fml.common.network.IGuiHandler;
 import de.kuratan.steamkreations.block.heater.TileEntityHeater;

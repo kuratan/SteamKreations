@@ -1,4 +1,4 @@
-package de.kuratan.steamkreations.gui;
+package de.kuratan.steamkreations.client.gui;
 
 import de.kuratan.steamkreations.container.ContainerSteamGenerator;
 import de.kuratan.steamkreations.block.steam_generator.TileEntitySteamGenerator;

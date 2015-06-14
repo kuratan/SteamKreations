@@ -16,7 +16,7 @@ public class ContainerHeater extends Container {
         ADDITION2(3 + 5 * 18, 17 + 18),
         ADDITION3(3 + 4 * 18, 17 + 2 * 18),
         ADDITION4(3 + 5 * 18, 17 + 2 * 18),
-        OUTPUT(3 + 7 * 18, 8 + 2 * 18);
+        OUTPUT(15 + 7 * 18, 8 + 2 * 18);
 
         private int x;
         private int y;

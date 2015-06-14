@@ -5,7 +5,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import de.kuratan.steamkreations.block.SKBlocks;
-import de.kuratan.steamkreations.gui.GuiHandler;
+import de.kuratan.steamkreations.client.gui.GuiHandler;
 import de.kuratan.steamkreations.item.SKItems;
 import de.kuratan.steamkreations.lib.Log;
 import de.kuratan.steamkreations.lib.Reference;
