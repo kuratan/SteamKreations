@@ -27,7 +27,7 @@ public class GuiHeater extends GuiContainer {
         int y = (height - ySize) / 2;
         drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
         if (tileEntityHeater.active()) {
-            drawTexturedModalRect(x + 114, y + 43, xSize, 0, 1 + tileEntityHeater.getCookProgressScaled(24), 16);
+            drawTexturedModalRect(x + 87, y + 43, xSize, 0, 1 + tileEntityHeater.getCookProgressScaled(24), 16);
         }
     }
 }
