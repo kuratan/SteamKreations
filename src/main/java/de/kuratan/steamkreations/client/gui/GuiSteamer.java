@@ -4,6 +4,7 @@ import de.kuratan.steamkreations.container.ContainerSteamer;
 import de.kuratan.steamkreations.block.steamer.TileEntitySteamer;
 import de.kuratan.steamkreations.lib.Reference;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
@@ -16,6 +17,13 @@ public class GuiSteamer extends GuiContainer {
         this.tileEntitySteamer = tileEntitySteamer;
         this.xSize = 184;
         this.ySize = 184;
+    }
+
+    @Override
+    protected void drawGuiContainerForegroundLayer(int p_drawGuiContainerForegroundLayer_1_, int p_drawGuiContainerForegroundLayer_2_) {
+        this.fontRendererObj.drawString(
+                this.tileEntitySteamer.hasCustomInventoryName() ? this.tileEntitySteamer.getInventoryName() : I18n
+                        .format(this.tileEntitySteamer.getInventoryName(), new Object[0]), 8, 6, 4210752);
     }
 
     @Override
@@ -47,7 +55,8 @@ public class GuiSteamer extends GuiContainer {
                     progress = this.tileEntitySteamer.getSlotDoneProgressScaled(slot.getId(), 13);
                     this.drawTexturedModalRect(x + slot.getX() + 2 + 18, y + slot.getY() + 2 + 12 - progress, xSize,
                                                12 - progress, 14, progress + 1);
-                } slot = ContainerSteamer.SLOTS.BIG3;
+                }
+                slot = ContainerSteamer.SLOTS.BIG3;
                 if (tileEntitySteamer.isSlotActive(slot.getId())) {
                     progress = this.tileEntitySteamer.getSlotDoneProgressScaled(slot.getId(), 13);
                     this.drawTexturedModalRect(x + slot.getX() + 2 - 18, y + slot.getY() + 2 + 12 - progress, xSize,

@@ -5,6 +5,7 @@ import de.kuratan.steamkreations.container.ContainerHeater;
 import de.kuratan.steamkreations.item.SKItems;
 import de.kuratan.steamkreations.lib.Reference;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
@@ -17,6 +18,13 @@ public class GuiHeater extends GuiContainer {
         this.tileEntityHeater = tileEntityHeater;
         this.xSize = 184;
         this.ySize = 184;
+    }
+
+    @Override
+    protected void drawGuiContainerForegroundLayer(int p_drawGuiContainerForegroundLayer_1_, int p_drawGuiContainerForegroundLayer_2_) {
+        this.fontRendererObj.drawString(
+                this.tileEntityHeater.hasCustomInventoryName() ? this.tileEntityHeater.getInventoryName() : I18n
+                        .format(this.tileEntityHeater.getInventoryName(), new Object[0]), 8, 6, 4210752);
     }
 
     @Override

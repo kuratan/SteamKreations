@@ -4,12 +4,17 @@ item.steamkreations:chocolate.name=Chocolate
 item.steamkreations:steamed_carrot.name=Steamed Carrot
 item.steamkreations:small_meal.name=Small Meal
 
+container.heater=Heater
 tile.steamkreations:heater.NORMAL.name=Heater
 tile.steamkreations:heater.REINFORCED.name=Reinforced Heater
 tile.steamkreations:heater.CREATIVE.name=Creative Heater
+
+container.steamer=Steamer
 tile.steamkreations:steamer.NORMAL.name=Steamer
 tile.steamkreations:steamer.REINFORCED.name=Reinforced Steamer
 tile.steamkreations:steamer.CREATIVE.name=Creative Steamer
+
+container.steam_generator=Steam Generator
 tile.steamkreations:steam_generator.NORMAL.name=Steam Generator
 tile.steamkreations:steam_generator.REINFORCED.name=Reinforced Steam Generator
 tile.steamkreations:steam_generator.CREATIVE.name=Creative Steam Generator

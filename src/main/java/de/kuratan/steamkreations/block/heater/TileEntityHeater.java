@@ -5,6 +5,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import de.kuratan.steamkreations.container.ContainerHeater;
 import de.kuratan.steamkreations.crafting.HeaterManager;
 import de.kuratan.steamkreations.crafting.HeaterRecipe;
+import de.kuratan.steamkreations.lib.Reference;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
@@ -241,7 +242,7 @@ public class TileEntityHeater extends TileFluidHandler implements ISidedInventor
 
     @Override
     public String getInventoryName() {
-        return "heater";
+        return "container.heater";
     }
 
     @Override

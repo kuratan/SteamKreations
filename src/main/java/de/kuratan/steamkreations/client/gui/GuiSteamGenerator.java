@@ -4,6 +4,7 @@ import de.kuratan.steamkreations.container.ContainerSteamGenerator;
 import de.kuratan.steamkreations.block.steam_generator.TileEntitySteamGenerator;
 import de.kuratan.steamkreations.lib.Reference;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import org.lwjgl.opengl.GL11;
 
@@ -15,6 +16,14 @@ public class GuiSteamGenerator extends GuiContainer {
         this.tileEntitySteamGenerator = tileEntitySteamGenerator;
         this.xSize = 184;
         this.ySize = 184;
+    }
+
+    @Override
+    protected void drawGuiContainerForegroundLayer(int p_drawGuiContainerForegroundLayer_1_, int p_drawGuiContainerForegroundLayer_2_) {
+        this.fontRendererObj.drawString(
+                this.tileEntitySteamGenerator.hasCustomInventoryName() ? this.tileEntitySteamGenerator
+                        .getInventoryName() : I18n
+                        .format(this.tileEntitySteamGenerator.getInventoryName(), new Object[0]), 8, 6, 4210752);
     }
 
     @Override

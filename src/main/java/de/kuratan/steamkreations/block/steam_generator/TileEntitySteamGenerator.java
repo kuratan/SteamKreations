@@ -177,7 +177,7 @@ public class TileEntitySteamGenerator extends TileFluidHandler implements IFluid
 
     @Override
     public String getInventoryName() {
-        return "steam_generator";
+        return "container.steam_generator";
     }
 
     @Override

@@ -247,7 +247,7 @@ public class TileEntitySteamer extends TileFluidHandler implements ISidedInvento
 
     @Override
     public String getInventoryName() {
-        return "steamer";
+        return "container.steamer";
     }
 
     @Override
