@@ -11,12 +11,12 @@ import net.minecraft.item.ItemStack;
 public class ContainerHeater extends Container {
 
     public enum SLOTS {
-        INPUT(3 + 2 * 18, 8 + 2 * 18),
-        ADDITION1(3 + 4 * 18, 17 + 18),
-        ADDITION2(3 + 5 * 18, 17 + 18),
-        ADDITION3(3 + 4 * 18, 17 + 2 * 18),
-        ADDITION4(3 + 5 * 18, 17 + 2 * 18),
-        OUTPUT(15 + 7 * 18, 8 + 2 * 18);
+        INPUT(12, 8 + 2 * 18),
+        ADDITION1(12 + 2 * 18, 17 + 18),
+        ADDITION2(12 + 3 * 18, 17 + 18),
+        ADDITION3(12 + 2 * 18, 17 + 2 * 18),
+        ADDITION4(12 + 3 * 18, 17 + 2 * 18),
+        OUTPUT(12 + 6 * 18, 8 + 2 * 18);
 
         private int x;
         private int y;
