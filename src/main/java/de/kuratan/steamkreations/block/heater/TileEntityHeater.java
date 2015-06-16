@@ -12,10 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraftforge.common.util.ForgeDirection;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidTank;
-import net.minecraftforge.fluids.IFluidHandler;
-import net.minecraftforge.fluids.TileFluidHandler;
+import net.minecraftforge.fluids.*;
 
 /**
  * TileEntity representing a basic heater for making chocolate.
@@ -55,6 +52,7 @@ public class TileEntityHeater extends TileFluidHandler implements ISidedInventor
 
     public TileEntityHeater() {
         super();
+        this.tank.setFluid(FluidRegistry.getFluidStack("steam", 0));
     }
 
     /**

@@ -9,10 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraftforge.common.util.ForgeDirection;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidTank;
-import net.minecraftforge.fluids.IFluidHandler;
-import net.minecraftforge.fluids.TileFluidHandler;
+import net.minecraftforge.fluids.*;
 
 public class TileEntitySteamGenerator extends TileFluidHandler implements IFluidHandler, ISidedInventory {
 
@@ -49,6 +46,7 @@ public class TileEntitySteamGenerator extends TileFluidHandler implements IFluid
     public TileEntitySteamGenerator() {
         super();
         this.inventory = new ItemStack[2];
+        this.tank.setFluid(FluidRegistry.getFluidStack("steam", 0));
     }
 
     public TYPES getType() {
