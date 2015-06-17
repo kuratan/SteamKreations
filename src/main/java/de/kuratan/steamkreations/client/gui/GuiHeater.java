@@ -1,6 +1,7 @@
 package de.kuratan.steamkreations.client.gui;
 
 import de.kuratan.steamkreations.block.heater.TileEntityHeater;
+import de.kuratan.steamkreations.client.gui.element.GuiFluidTank;
 import de.kuratan.steamkreations.container.ContainerHeater;
 import de.kuratan.steamkreations.item.SKItems;
 import de.kuratan.steamkreations.lib.Reference;
@@ -8,6 +9,8 @@ import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraftforge.fluids.FluidRegistry;
 import org.lwjgl.opengl.GL11;
 
 public class GuiHeater extends GuiContainer {
@@ -37,5 +40,7 @@ public class GuiHeater extends GuiContainer {
         if (tileEntityHeater.active()) {
             drawTexturedModalRect(x + 87, y + 43, xSize, 0, 1 + tileEntityHeater.getCookProgressScaled(24), 16);
         }
+        GuiFluidTank guiFluidTank = new GuiFluidTank(this, tileEntityHeater.getTankInfo(ForgeDirection.UNKNOWN), x + 156, y + 27);
+        guiFluidTank.drawGuiContainerBackgroundLayer(f, i , j);
     }
 }

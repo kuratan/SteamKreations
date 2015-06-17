@@ -52,7 +52,6 @@ public class TileEntityHeater extends TileFluidHandler implements ISidedInventor
 
     public TileEntityHeater() {
         super();
-        this.tank.setFluid(FluidRegistry.getFluidStack("steam", 0));
     }
 
     /**
@@ -62,7 +61,8 @@ public class TileEntityHeater extends TileFluidHandler implements ISidedInventor
      */
     public void setType(TYPES type) {
         this.type = type;
-        this.tank = new FluidTank(type.getSteamCapacity());
+        this.tank.setCapacity(type.getSteamCapacity());
+        this.tank.setFluid(FluidRegistry.getFluidStack("steam", 1000));
         this.inventory = new ItemStack[ContainerHeater.SLOTS.values().length];
         this.cookTime = -1;
         this.recipe = null;
