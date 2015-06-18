@@ -36,8 +36,9 @@ public class SKItems {
                 addItem(new ItemFood(6, 1.0F, false).setUnlocalizedName(Reference.modPrefix("steamed_carrot"))
                                                     .setTextureName(Reference.modPrefix("steamed_carrot"))
                                                     .setCreativeTab(SteamKreations.tab)));
+        // 6 + 5 + 5 + max 8 -> 24
         smallMeal = registerItem(
-                addItem(new ItemFood(10, 3.5F, false).setUnlocalizedName(Reference.modPrefix("small_meal"))
+                addItem(new ItemFood(24, 3.5F, false).setUnlocalizedName(Reference.modPrefix("small_meal"))
                                                      .setTextureName(Reference.modPrefix("small_meal"))
                                                      .setCreativeTab(SteamKreations.tab).setHasSubtypes(true)));
         chocolate = registerItem(addItem(new ItemChocolate()));
