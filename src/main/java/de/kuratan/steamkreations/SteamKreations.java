@@ -13,6 +13,7 @@ import de.kuratan.steamkreations.tileentity.SKTileEntities;
 import de.kuratan.steamkreations.crafting.ChocolateManager;
 import de.kuratan.steamkreations.crafting.HeaterManager;
 import de.kuratan.steamkreations.crafting.SteamerManager;
+import de.kuratan.steamkreations.world.village.SKWorld;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 
@@ -37,6 +38,7 @@ public class SteamKreations {
         SKBlocks.initialization();
         SKTileEntities.initialization();
         SKItems.initialization();
+        SKWorld.initialization();
     }
 
     @Mod.EventHandler
