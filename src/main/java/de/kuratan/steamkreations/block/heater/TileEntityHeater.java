@@ -62,7 +62,7 @@ public class TileEntityHeater extends TileFluidHandler implements ISidedInventor
     public void setType(TYPES type) {
         this.type = type;
         this.tank.setCapacity(type.getSteamCapacity());
-        this.tank.setFluid(FluidRegistry.getFluidStack("steam", 1000));
+        this.tank.setFluid(new FluidStack(FluidRegistry.WATER, 1000));
         this.inventory = new ItemStack[ContainerHeater.SLOTS.values().length];
         this.cookTime = -1;
         this.recipe = null;

@@ -10,7 +10,7 @@ import java.util.Random;
 public class VillageRestaurantHandler implements IVillageCreationHandler {
     @Override
     public StructureVillagePieces.PieceWeight getVillagePieceWeight(Random random, int i) {
-        return null;
+        return new StructureVillagePieces.PieceWeight(ComponentRestaurant.class, 30, i + random.nextInt(4));
     }
 
     @Override
@@ -20,7 +20,6 @@ public class VillageRestaurantHandler implements IVillageCreationHandler {
 
     @Override
     public Object buildComponent(StructureVillagePieces.PieceWeight pieceWeight, StructureVillagePieces.Start start, List list, Random random, int x, int y, int z, int coordBaseMode, int i) {
-        Log.debug("Restaurant @" + x + " " + y + " " + z);
         return ComponentRestaurant.buildComponent(start, list, random, x, y, z, coordBaseMode, i);
     }
 }

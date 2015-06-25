@@ -1,8 +1,10 @@
 package de.kuratan.steamkreations;
 
+import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import de.kuratan.steamkreations.block.SKBlocks;
 import de.kuratan.steamkreations.client.gui.GuiHandler;
@@ -28,8 +30,13 @@ public class SteamKreations {
         }
     };
 
-    @Mod.Instance("steamkreations")
+    @Mod.Instance(Reference.MOD_ID)
     public static SteamKreations instance;
+
+    @Mod.EventHandler
+    public void preInit(FMLPreInitializationEvent event) {
+        //event.getSuggestedConfigurationFile()
+    }
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {

@@ -68,5 +68,3 @@ processResources
         exclude '*.info'
     }
 }
-
-sourceSets { main { output.resourcesDir = output.classesDir } }
