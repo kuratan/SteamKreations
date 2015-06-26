@@ -44,23 +44,28 @@ public class ComponentRestaurant extends StructureVillagePieces.House1 {
         // Base
         this.fillWithBlocks(world, structureBoundingBox, 0, 0, 0, 8, 0, 6, Blocks.cobblestone, Blocks.cobblestone,
                             false);
-        this.fillWithBlocks(world, structureBoundingBox, 1, 0, 1, 8, 0, 5, Blocks.planks, Blocks.planks, false);
+        this.fillWithBlocks(world, structureBoundingBox, 1, 0, 1, 7, 0, 5, Blocks.planks, Blocks.planks, false);
 
         // Walls
-        this.fillWithBlocks(world, structureBoundingBox, 0, 0, 0, 0, 3, 0, Blocks.log, Blocks.log, false);
-        this.fillWithBlocks(world, structureBoundingBox, 8, 0, 0, 8, 3, 0, Blocks.log, Blocks.log, false);
-        this.fillWithBlocks(world, structureBoundingBox, 8, 0, 6, 8, 3, 6, Blocks.log, Blocks.log, false);
-        this.fillWithBlocks(world, structureBoundingBox, 0, 0, 6, 0, 3, 6, Blocks.log, Blocks.log, false);
         this.fillWithBlocks(world, structureBoundingBox, 1, 1, 0, 7, 3, 0, Blocks.planks, Blocks.planks, false);
         this.fillWithBlocks(world, structureBoundingBox, 0, 1, 1, 0, 3, 5, Blocks.planks, Blocks.planks, false);
         this.fillWithBlocks(world, structureBoundingBox, 1, 1, 6, 7, 3, 6, Blocks.planks, Blocks.planks, false);
         this.fillWithBlocks(world, structureBoundingBox, 8, 1, 1, 8, 3, 5, Blocks.planks, Blocks.planks, false);
+        this.fillWithBlocks(world, structureBoundingBox, 0, 0, 0, 0, 3, 0, Blocks.log, Blocks.log, false);
+        this.fillWithBlocks(world, structureBoundingBox, 8, 0, 0, 8, 3, 0, Blocks.log, Blocks.log, false);
+        this.fillWithBlocks(world, structureBoundingBox, 8, 0, 6, 8, 3, 6, Blocks.log, Blocks.log, false);
+        this.fillWithBlocks(world, structureBoundingBox, 0, 0, 6, 0, 3, 6, Blocks.log, Blocks.log, false);
+        this.fillWithBlocks(world, structureBoundingBox, 4, 0, 6, 4, 3, 6, Blocks.log, Blocks.log, false);
 
         // Windows
         this.fillWithBlocks(world, structureBoundingBox, 0, 2, 2, 0, 2, 4, Blocks.glass_pane, Blocks.glass_pane, false);
         this.fillWithBlocks(world, structureBoundingBox, 8, 2, 2, 8, 2, 4, Blocks.glass_pane, Blocks.glass_pane, false);
+        this.placeBlockAtCurrentPosition(world, Blocks.glass_pane, 0, 2, 2, 0, structureBoundingBox);
+        this.placeBlockAtCurrentPosition(world, Blocks.glass_pane, 0, 6, 2, 0, structureBoundingBox);
+        this.placeBlockAtCurrentPosition(world, Blocks.glass_pane, 0, 6, 2, 6, structureBoundingBox);
+        this.placeBlockAtCurrentPosition(world, Blocks.glass_pane, 0, 2, 2, 6, structureBoundingBox);
 
-        //
+        // Chimney
         this.fillWithBlocks(world, structureBoundingBox, 0, 0, 2, 0, 9, 2, Blocks.cobblestone, Blocks.cobblestone, false);
 
         // Door
