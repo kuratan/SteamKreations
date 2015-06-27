@@ -10,7 +10,7 @@ import java.util.Random;
 public class VillageRestaurantHandler implements IVillageCreationHandler {
     @Override
     public StructureVillagePieces.PieceWeight getVillagePieceWeight(Random random, int i) {
-        return new StructureVillagePieces.PieceWeight(ComponentRestaurant.class, 30, i + random.nextInt(4));
+        return new StructureVillagePieces.PieceWeight(ComponentRestaurant.class, 30, 1);
     }
 
     @Override
