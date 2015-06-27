@@ -1,4 +1,4 @@
-package de.kuratan.steamkreations.block.steam_generator;
+package de.kuratan.steamkreations.block.steamgenerator;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -175,7 +175,7 @@ public class TileEntitySteamGenerator extends TileFluidHandler implements IFluid
 
     @Override
     public String getInventoryName() {
-        return "container.steam_generator";
+        return "container.steamGenerator";
     }
 
     @Override

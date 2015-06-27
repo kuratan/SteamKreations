@@ -5,7 +5,7 @@ import de.kuratan.steamkreations.block.heater.TileEntityHeater;
 import de.kuratan.steamkreations.container.ContainerHeater;
 import de.kuratan.steamkreations.container.ContainerSteamGenerator;
 import de.kuratan.steamkreations.container.ContainerSteamer;
-import de.kuratan.steamkreations.block.steam_generator.TileEntitySteamGenerator;
+import de.kuratan.steamkreations.block.steamgenerator.TileEntitySteamGenerator;
 import de.kuratan.steamkreations.block.steamer.TileEntitySteamer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;

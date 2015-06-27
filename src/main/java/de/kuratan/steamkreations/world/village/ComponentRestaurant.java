@@ -58,7 +58,7 @@ public class ComponentRestaurant extends StructureVillagePieces.House1 {
 
             this.boundingBox.offset(0, this.averageGroundLevel - this.boundingBox.maxY + 9, 0);
         }
-        Log.warn("Restaurant @" + structureBoundingBox.getCenterX() + " " + structureBoundingBox.getCenterZ());
+
         // Base
         this.fillWithBlocks(world, structureBoundingBox, 0, 0, 0, 8, 0, 6, Blocks.cobblestone, Blocks.cobblestone,
                             false);

@@ -1,4 +1,4 @@
-package de.kuratan.steamkreations.block.steam_generator;
+package de.kuratan.steamkreations.block.steamgenerator;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
@@ -31,8 +31,8 @@ public class BlockSteamGenerator extends BlockContainer implements ITileEntityPr
 
     public BlockSteamGenerator() {
         super(Material.iron);
-        this.setBlockName(Reference.modPrefix("steam_generator"));
-        this.setBlockTextureName(Reference.modPrefix("steam_generator"));
+        this.setBlockName(Reference.modPrefix("steamGenerator"));
+        this.setBlockTextureName(Reference.modPrefix("steamGenerator"));
         this.setHardness(1.0f);
         this.setStepSound(soundTypeMetal);
         this.setCreativeTab(SteamKreations.tab);

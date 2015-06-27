@@ -1,4 +1,4 @@
-package de.kuratan.steamkreations.block.steam_generator;
+package de.kuratan.steamkreations.block.steamgenerator;
 
 import de.kuratan.steamkreations.SteamKreations;
 import de.kuratan.steamkreations.item.ItemBlockWithSubtypes;

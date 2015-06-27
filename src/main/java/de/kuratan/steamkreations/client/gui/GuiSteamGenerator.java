@@ -1,7 +1,7 @@
 package de.kuratan.steamkreations.client.gui;
 
 import de.kuratan.steamkreations.container.ContainerSteamGenerator;
-import de.kuratan.steamkreations.block.steam_generator.TileEntitySteamGenerator;
+import de.kuratan.steamkreations.block.steamgenerator.TileEntitySteamGenerator;
 import de.kuratan.steamkreations.lib.Reference;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.resources.I18n;
@@ -29,7 +29,7 @@ public class GuiSteamGenerator extends GuiContainer {
     @Override
     protected void drawGuiContainerBackgroundLayer(float f, int i, int j) {
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-        this.mc.getTextureManager().bindTexture(Reference.getGuiResourceLocation("steam_generator"));
+        this.mc.getTextureManager().bindTexture(Reference.getGuiResourceLocation("steamGenerator"));
         int x = (width - xSize) / 2;
         int y = (height - ySize) / 2;
         drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
