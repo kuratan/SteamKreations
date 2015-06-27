@@ -65,6 +65,34 @@ public class ComponentRestaurant extends StructureVillagePieces.House1 {
         this.placeBlockAtCurrentPosition(world, Blocks.glass_pane, 0, 6, 2, 6, structureBoundingBox);
         this.placeBlockAtCurrentPosition(world, Blocks.glass_pane, 0, 2, 2, 6, structureBoundingBox);
 
+        // Roof
+        this.fillWithBlocks(world, structureBoundingBox, 0, 5, 1, 8, 5, 1, Blocks.planks, Blocks.planks, false);
+        this.fillWithBlocks(world, structureBoundingBox, 0, 6, 2, 8, 6, 2, Blocks.planks, Blocks.planks, false);
+        this.fillWithBlocks(world, structureBoundingBox, 0, 6, 4, 8, 6, 4, Blocks.planks, Blocks.planks, false);
+        this.fillWithBlocks(world, structureBoundingBox, 0, 5, 5, 8, 5, 5, Blocks.planks, Blocks.planks, false);
+        for (int i = 1; i <= 5; i++) {
+            this.placeBlockAtCurrentPosition(world, Blocks.log, 12, 0, 4, i, structureBoundingBox);
+            this.placeBlockAtCurrentPosition(world, Blocks.log, 12, 8, 4, i, structureBoundingBox);
+        }
+        this.fillWithBlocks(world, structureBoundingBox, 0, 5, 2, 0, 5, 4, Blocks.planks, Blocks.planks, false);
+        this.fillWithBlocks(world, structureBoundingBox, 8, 5, 2, 8, 5, 4, Blocks.planks, Blocks.planks, false);
+        this.fillWithBlocks(world, structureBoundingBox, 0, 6, 3, 0, 6, 3, Blocks.planks, Blocks.planks, false);
+        this.fillWithBlocks(world, structureBoundingBox, 8, 6, 3, 8, 6, 3, Blocks.planks, Blocks.planks, false);
+        for (int i = 0; i <= 8; i++) {
+            this.placeBlockAtCurrentPosition(world, Blocks.log, 12, i, 4, 0, structureBoundingBox);
+            this.placeBlockAtCurrentPosition(world, Blocks.log, 12, i, 7, 3, structureBoundingBox);
+            this.placeBlockAtCurrentPosition(world, Blocks.log, 12, i, 4, 6, structureBoundingBox);
+            this.placeBlockAtCurrentPosition(world, Blocks.oak_stairs, this.getMetadataWithOffset(Blocks.oak_stairs, 3), i, 4, -1, structureBoundingBox);
+            this.placeBlockAtCurrentPosition(world, Blocks.oak_stairs, this.getMetadataWithOffset(Blocks.oak_stairs, 3), i, 5, 0, structureBoundingBox);
+            this.placeBlockAtCurrentPosition(world, Blocks.oak_stairs, this.getMetadataWithOffset(Blocks.oak_stairs, 3), i, 6, 1, structureBoundingBox);
+            this.placeBlockAtCurrentPosition(world, Blocks.oak_stairs, this.getMetadataWithOffset(Blocks.oak_stairs, 3), i, 7, 2, structureBoundingBox);
+            this.placeBlockAtCurrentPosition(world, Blocks.wooden_slab, 0, i, 8, 3, structureBoundingBox);
+            this.placeBlockAtCurrentPosition(world, Blocks.oak_stairs, this.getMetadataWithOffset(Blocks.oak_stairs, 2), i, 7, 4, structureBoundingBox);
+            this.placeBlockAtCurrentPosition(world, Blocks.oak_stairs, this.getMetadataWithOffset(Blocks.oak_stairs, 2), i, 6, 5, structureBoundingBox);
+            this.placeBlockAtCurrentPosition(world, Blocks.oak_stairs, this.getMetadataWithOffset(Blocks.oak_stairs, 2), i, 5, 6, structureBoundingBox);
+            this.placeBlockAtCurrentPosition(world, Blocks.oak_stairs, this.getMetadataWithOffset(Blocks.oak_stairs, 2), i, 4, 7, structureBoundingBox);
+        }
+
         // Interior
         this.placeBlockAtCurrentPosition(world, Blocks.fence, 0, 6, 1, 2, structureBoundingBox);
         this.placeBlockAtCurrentPosition(world, Blocks.wooden_pressure_plate, 0, 6, 2, 2, structureBoundingBox);
