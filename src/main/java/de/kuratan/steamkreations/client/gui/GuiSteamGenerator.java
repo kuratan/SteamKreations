@@ -1,11 +1,13 @@
 package de.kuratan.steamkreations.client.gui;
 
+import de.kuratan.steamkreations.client.gui.element.GuiFluidTank;
 import de.kuratan.steamkreations.container.ContainerSteamGenerator;
 import de.kuratan.steamkreations.block.steamgenerator.TileEntitySteamGenerator;
 import de.kuratan.steamkreations.lib.Reference;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraftforge.common.util.ForgeDirection;
 import org.lwjgl.opengl.GL11;
 
 public class GuiSteamGenerator extends GuiContainer {
@@ -38,5 +40,7 @@ public class GuiSteamGenerator extends GuiContainer {
             this.drawTexturedModalRect(x + 12 + 4 * 18, y + 10 + 2 * 18 + 12 - progress, xSize, 12 - progress, 14,
                                        progress + 1);
         }
+        GuiFluidTank guiFluidTank = new GuiFluidTank(this, tileEntitySteamGenerator.getTankInfo(ForgeDirection.UNKNOWN), x + 156, y + 27);
+        guiFluidTank.drawGuiContainerBackgroundLayer(f, i, j);
     }
 }

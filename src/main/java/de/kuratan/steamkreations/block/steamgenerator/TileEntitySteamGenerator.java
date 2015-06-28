@@ -2,6 +2,7 @@ package de.kuratan.steamkreations.block.steamgenerator;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import de.kuratan.steamkreations.fluid.SKFluids;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.ISidedInventory;
@@ -46,7 +47,6 @@ public class TileEntitySteamGenerator extends TileFluidHandler implements IFluid
     public TileEntitySteamGenerator() {
         super();
         this.inventory = new ItemStack[2];
-        this.tank.setFluid(FluidRegistry.getFluidStack("steam", 0));
     }
 
     public TYPES getType() {
@@ -228,6 +228,7 @@ public class TileEntitySteamGenerator extends TileFluidHandler implements IFluid
 
     @Override
     public void updateEntity() {
+        boolean updated = false;
         if (this.deviceBurnTime == 0) {
             ItemStack itemStack = getStackInSlot(0);
             if (itemStack != null && itemStack.stackSize > 0 && itemStack.getItem().equals(Items.coal)) {
@@ -237,12 +238,19 @@ public class TileEntitySteamGenerator extends TileFluidHandler implements IFluid
             if (type.equals(TYPES.CREATIVE)) {
                 this.deviceBurnTime = 200;
             }
-            this.markDirty();
+            updated = true;
         }
-        if (this.deviceBurnTime > 0) {
-            this.deviceBurnTime--;
-            //this.tank.fill(FluidRegistry.getFluidStack("steam", this.type.getSteamPerTick()), true);
+        if (this.deviceBurnTime > 0 && this.tank.getCapacity() > 0) {
+            int amount = this.tank.fill(FluidRegistry.getFluidStack("steam", this.type.getSteamPerTick()), false);
+            if (amount > 0) {
+                this.deviceBurnTime--;
+                this.tank.fill(FluidRegistry.getFluidStack("steam", amount), true);
+                updated = true;
+            }
+        }
+        if (updated) {
             this.markDirty();
+            worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
         }
     }
 }

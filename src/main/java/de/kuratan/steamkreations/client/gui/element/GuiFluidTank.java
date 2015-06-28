@@ -1,9 +1,11 @@
 package de.kuratan.steamkreations.client.gui.element;
 
+import de.kuratan.steamkreations.item.SKItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.util.IIcon;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
 
@@ -32,11 +34,14 @@ public class GuiFluidTank implements IGuiElement{
             return;
         }
         int capacity = fluidTankInfos[0].capacity;
-        int height = (capacity - fluidTankInfos[0].fluid.amount) * 58 / capacity;
+        int height = fluidTankInfos[0].fluid.amount * 58 / capacity;
         Minecraft.getMinecraft().getTextureManager().bindTexture(TextureMap.locationBlocksTexture);
+        /*
         IIcon fluidIcon = fluidTankInfos[0].fluid.getFluid().getStillIcon();
+        */
+        IIcon fluidIcon = FluidRegistry.getFluid("water").getStillIcon();
         for (int row = 0; row <= height / 16; ++row) {
-            gui.drawTexturedModelRectFromIcon(this.x, this.y + row * 16 - 1, fluidIcon, 16, 16);
+            gui.drawTexturedModelRectFromIcon(this.x, this.y + 57 - height + row * 16, fluidIcon, 16, 16);
         }
     }
 }

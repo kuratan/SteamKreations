@@ -11,10 +11,11 @@ import de.kuratan.steamkreations.config.ConfigurationHandler;
 import de.kuratan.steamkreations.crafting.ChocolateManager;
 import de.kuratan.steamkreations.crafting.HeaterManager;
 import de.kuratan.steamkreations.crafting.SteamerManager;
+import de.kuratan.steamkreations.fluid.SKFluids;
 import de.kuratan.steamkreations.item.SKItems;
 import de.kuratan.steamkreations.lib.Reference;
 import de.kuratan.steamkreations.tileentity.SKTileEntities;
-import de.kuratan.steamkreations.world.village.SKWorld;
+import de.kuratan.steamkreations.world.SKWorld;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 
@@ -45,6 +46,7 @@ public class SteamKreations {
         SKTileEntities.initialization();
         SKItems.initialization();
         SKWorld.initialization();
+        SKFluids.initialization();
     }
 
     @Mod.EventHandler
